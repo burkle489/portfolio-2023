@@ -18,7 +18,7 @@ const ClientOnlyPortal: FC<IClientOnlyPortalProps> = ({
     setMounted(true);
   }, [selector]);
 
-  return mounted ? createPortal(children, ref.current) : null;
+  return mounted ? createPortal(children, ref.current as any) : null;
 };
 
 export default ClientOnlyPortal;
