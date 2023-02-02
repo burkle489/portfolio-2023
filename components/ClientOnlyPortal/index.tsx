@@ -10,7 +10,7 @@ const ClientOnlyPortal: FC<IClientOnlyPortalProps> = ({
   children,
   selector,
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
