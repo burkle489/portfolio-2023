@@ -17,7 +17,7 @@ const ClientOnlyPortal: FC<IClientOnlyPortalProps> = ({
     ref.current = document.querySelector(selector);
     setMounted(true);
   }, [selector]);
-
+  // todo types
   return mounted ? createPortal(children, ref.current as any) : null;
 };
 

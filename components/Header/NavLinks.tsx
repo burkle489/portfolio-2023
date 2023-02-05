@@ -17,7 +17,9 @@ const NavLinks: FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
             "flex md:hidden": isMobile,
           })}
         >
-          <Link href={nLink.value}>{nLink.label}</Link>
+          <Link href={nLink.value} className="text-lg">
+            {nLink.label}
+          </Link>
         </li>
       ))}
     </ul>

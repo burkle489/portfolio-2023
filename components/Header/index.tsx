@@ -5,14 +5,19 @@ import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import SideDrawer from "./Sidedrawer";
 import { NAV_LINKS } from "../../constants";
 import NavLinks from "./NavLinks";
+import Container from "../Container";
 
 interface IHeaderProps {}
 
 const Header: FC<IHeaderProps> = ({}) => {
   const [openSidedrawer, setOpenSidedrawer] = useState<boolean>(false);
   return (
-    <nav className="fixed top-0 left-0 w-[100vw] bg-[rgba(0,0,0,0.05)] grid grid-cols-12 px-6 items-center h-20">
-      <div className="col-span-2 text-left text-4xl">tb.</div>
+    <Container
+      Tag="nav"
+      className="fixed top-0 left-0 w-[100vw] bg-white !p-0 !px-6 h-20 border-b-2 border-black"
+      innerClassName="w-full h-full grid grid-cols-12 items-center"
+    >
+      <div className="col-span-2 text-left text-4xl font-display">tb.</div>
       <NavLinks />
       <div className="col-span-2 flex justify-end md:hidden">
         {openSidedrawer ? (
@@ -42,7 +47,7 @@ const Header: FC<IHeaderProps> = ({}) => {
           }}
         />
       )}
-    </nav>
+    </Container>
   );
 };
 
