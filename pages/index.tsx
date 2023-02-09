@@ -24,13 +24,7 @@ const Home: NextPage = () => {
       </Head>
       <main
         className={cx(
-          "flex justify-center items-center flex-col h-[100vh] w-[100vw] p-[10%]",
-          {
-            "": isHoveringMiddle,
-            "": isHoveringProjects,
-            "": isHoveringAbout,
-            "": isHoveringContact,
-          }
+          "flex justify-center items-center flex-col h-[100vh] w-[100vw] p-[10%]"
         )}
       >
         <div
