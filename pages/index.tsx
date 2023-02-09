@@ -5,6 +5,12 @@ import { useState } from "react";
 import { CopyToClipboardBtn } from "../components/CopyToClipboardBtn";
 import Header from "../components/Header";
 import cx from "classnames";
+import HomePageLink from "../components/HomePageLink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faL } from "@fortawesome/free-solid-svg-icons";
+import linkedin from "../public/linkedin-in.svg";
+import { SOCIALS } from "../constants";
+import SocialLink from "../components/SocialLink";
 
 const firstName = ["T", "A", "Y", "L", "E", "R"];
 const lastName = ["B", "U", "R", "K", "E"];
@@ -14,10 +20,15 @@ const Home: NextPage = () => {
   const [isHoveringProjects, setIsHoveringProjects] = useState<boolean>(false);
   const [isHoveringAbout, setIsHoveringAbout] = useState<boolean>(false);
   const [isHoveringContact, setIsHoveringContact] = useState<boolean>(false);
-  const [isHoveringSocials, setIsHoveringSocials] = useState<boolean>(true);
+  const [isHoveringSocials, setIsHoveringSocials] = useState<boolean>(false);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-white">
+    <div
+      className={cx(
+        "flex min-h-screen flex-col items-center justify-center bg-white transition-colors duration-500 ",
+        { "bg-blue-300": isHoveringSocials }
+      )}
+    >
       <Head>
         <title>tburke.dev</title>
         <link rel="icon" href="/favicon.ico" />
@@ -27,13 +38,10 @@ const Home: NextPage = () => {
           "flex justify-center items-center flex-col h-[100vh] w-[100vw] p-[10%]"
         )}
       >
-        <div
-          onMouseEnter={() => {
-            setIsHoveringProjects(true);
-          }}
-          onMouseLeave={() => {
-            setIsHoveringProjects(false);
-          }}
+        <HomePageLink
+          text="projects"
+          pageHref="/projects"
+          setIsHovering={setIsHoveringProjects}
           className={cx(
             "absolute top-[10%] border-collapse hover:top-0 hover:left-0 hover:bg-yellow-300 hover:w-[calc(20%+(80%/1.5))] hover:h-[calc(20%+(80%/3))] transition-all duration-500 left-[10%] w-[calc(80%/1.5)] h-[calc(80%/3)]  border-4 border-b-black border-r-0 border-t-0 border-l-0 flex justify-center items-center",
             {
@@ -42,20 +50,15 @@ const Home: NextPage = () => {
                 isHoveringAbout,
               "!w-[calc((80%/3)+20%)] !h-[calc(((80%/1.5)-10%)-(80%/3))] !top-[10%] !left-[calc(-20%+(80%/3))]":
                 isHoveringContact,
-              "!left-[calc(-20%+(80%/3))] !w-[calc((80%/3)+20%)] !h-[calc((20%+(80%/1.5))-(80%/3))] !top-0":
-                isHoveringSocials,
+              // "!left-[calc(-20%+(80%/3))] !w-[calc((80%/3)+20%)] !h-[calc((20%+(80%/1.5))-(80%/3))] !top-0":
+              //   isHoveringSocials,
             }
           )}
-        >
-          <h2 className="text-3xl">PROJECTS</h2>
-        </div>
-        <div
-          onMouseEnter={() => {
-            setIsHoveringAbout(true);
-          }}
-          onMouseLeave={() => {
-            setIsHoveringAbout(false);
-          }}
+        />
+        <HomePageLink
+          text="about"
+          pageHref="/about"
+          setIsHovering={setIsHoveringAbout}
           className={cx(
             "absolute top-[calc(10%+(80%/3))] left-[10%] w-[calc(80%/3)] h-[calc(80%/1.5)] hover:h-[calc(20%+(80%/1.5))] hover:w-[calc(20%+(80%/3))] hover:top-[calc(100%-(20%+(80%/1.5)))] hover:left-0 transition-all duration-500 border-4 border-t-0 border-r-black border-b-0 border-l-0 flex justify-center items-center hover:bg-orange-300",
             {
@@ -64,13 +67,11 @@ const Home: NextPage = () => {
                 isHoveringProjects,
               "!left-[calc(-20%+(80%/3))] !h-[calc(20%+(80%/1.5))] !top-[calc(100%-(20%+(80%/1.5)))] w-[20%]":
                 isHoveringContact,
-              "!h-[calc((80%/3)+20%)] !w-[calc(((80%/1.5)-10%)-(80%/3))] top-[calc((20%+(80%/1.5))-(80%/3))]":
-                isHoveringSocials,
+              // "!h-[calc((80%/3)+20%)] !w-[calc(((80%/1.5)-10%)-(80%/3))] top-[calc((20%+(80%/1.5))-(80%/3))]":
+              //   isHoveringSocials,
             }
           )}
-        >
-          <h2 className="text-3xl">ABOUT</h2>
-        </div>
+        />
         <div
           className={cx(
             "absolute top-[calc(10%+(80%/3))] left-[calc(10%+(80%/3))] transition-all duration-500 border-0 flex flex-col justify-center items-center w-[calc(80%/3)] h-[calc(80%/3)] bg-black hover:bg-green-300",
@@ -80,8 +81,8 @@ const Home: NextPage = () => {
                 isHoveringProjects,
               "!left-[calc(20%+(80%/3))] !top-[calc((80%/3))]": isHoveringAbout,
               "!left-[calc((80%/3))]  !top-[calc((80%/3))]": isHoveringContact,
-              "!left-[calc((80%/3))] !top-[calc(20%+(80%/3))]":
-                isHoveringSocials,
+              // "!left-[calc((80%/3))] !top-[calc(20%+(80%/3))]":
+              //   isHoveringSocials,
             }
           )}
           onMouseEnter={() => {
@@ -123,15 +124,10 @@ const Home: NextPage = () => {
             </div>
           )}
         </div>
-        <div
-          onMouseEnter={() => {
-            setIsHoveringSocials(true);
-          }}
-          onMouseLeave={() => {
-            setIsHoveringSocials(false);
-          }}
+        <HomePageLink
+          setIsHovering={setIsHoveringSocials}
           className={cx(
-            "absolute bottom-[calc(10%+(80%/3))] right-[10%] w-[calc(80%/3)] h-[calc(80%/1.5)] transition-all duration-500 border-4 border-b-0 hover:h-[calc(20%+(80%/1.5))] hover:w-[calc(20%+(80%/3))] hover:bottom-[calc(100%-(20%+(80%/1.5)))] hover:right-0 border-l-black border-t-0 border-r-0 flex justify-center items-center hover:bg-blue-300",
+            "absolute bottom-[calc(10%+(80%/3))] right-[10%] w-[calc(80%/3)] h-[calc(80%/1.5)] transition-all duration-500 border-4 border-b-0  border-l-black border-t-0 border-r-0 flex flex-col justify-center items-center",
             {
               "!w-[20%] bottom-[30%] !h-[60%]": isHoveringMiddle,
               "!right-[calc(-20%+(80%/3))] !h-[calc(20%+(80%/1.5))] !bottom-[calc(100%-(20%+(80%/1.5)))] w-[20%]":
@@ -140,10 +136,15 @@ const Home: NextPage = () => {
                 isHoveringAbout,
               "!right-0 !w-[calc(20%+(80%/3))] !bottom-[calc(20%+(80%/3))] h-[calc((80%/1.5)-10%)]":
                 isHoveringContact,
-              "": isHoveringSocials,
+              // "": isHoveringSocials,
             }
           )}
-        ></div>
+          innerClassName="gap-6"
+        >
+          <SocialLink social={SOCIALS.LINKEDIN} />
+          <SocialLink social={SOCIALS.GITHUB} />
+          <SocialLink social={SOCIALS.EMAIL} />
+        </HomePageLink>
         <div
           onMouseEnter={() => {
             setIsHoveringContact(true);
@@ -159,8 +160,8 @@ const Home: NextPage = () => {
                 isHoveringProjects,
               "!right-[calc(-20%+(80%/3))] !w-[calc((80%/3)+20%)] !h-[calc((20%+(80%/1.5))-(80%/3))] !bottom-0":
                 isHoveringAbout,
-              "!h-[calc(((80%/1.5)-10%)-(80%/3))] !right-0 !w-[calc(20%+(80%/1.5))]":
-                isHoveringSocials,
+              // "!h-[calc(((80%/1.5)-10%)-(80%/3))] !right-0 !w-[calc(20%+(80%/1.5))]":
+              //   isHoveringSocials,
             }
           )}
         >
