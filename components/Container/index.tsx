@@ -15,7 +15,7 @@ const Container: FC<IContainerProps> = ({
   innerClassName,
 }) => {
   return (
-    <Tag className={cx("p-12 md:p-20 xl:p-32", className)}>
+    <Tag className={cx("p-12 md:p-20 xl:p-32 w-full h-full", className)}>
       <div
         className={cx("max-w-[1200px] w-full h-full mx-auto", innerClassName)}
       >
