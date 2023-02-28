@@ -15,7 +15,7 @@ const Timeline: FC<ITimelineProps> = ({ items }) => {
           <>
             {/* <span className="bg-black w-6 h-6 rounded-full"></span> */}
             <TimelineItem
-              {...{ ...item, isLeft: index % 2 }}
+              {...{ ...item, isLeft: index % 2 ? true : false }}
               className={cx("relative", {
                 "-left-72": index % 2,
                 "-right-72": !(index % 2),
