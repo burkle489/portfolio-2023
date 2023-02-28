@@ -7,9 +7,10 @@ import gsap from "gsap";
 
 const Projects: NextPage = ({}) => {
   const projectsScrollContainer = useRef(null);
-
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {}, projectsScrollContainer);
+    let ctx = gsap.context(() => {
+      gsap.to('sticky-showcase')
+    }, projectsScrollContainer moveLeft);
   }, []);
 
   return (
