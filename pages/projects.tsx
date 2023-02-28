@@ -7,11 +7,6 @@ import gsap from "gsap";
 
 const Projects: NextPage = ({}) => {
   const projectsScrollContainer = useRef(null);
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.to('sticky-showcase')
-    }, projectsScrollContainer moveLeft);
-  }, []);
 
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-white">
