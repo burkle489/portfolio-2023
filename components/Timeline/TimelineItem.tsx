@@ -28,7 +28,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   className,
   isLeft,
 }) => {
-  const ref = useRef();
+  const ref = useRef(null);
 
   useEffect(() => {
     if (ref && ref.current) {
