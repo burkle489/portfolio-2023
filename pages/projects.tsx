@@ -83,7 +83,7 @@ const Projects: NextPage = ({}) => {
             // start: "top top",
             toggleActions: "play none none reverse",
           },
-          y: 300,
+          y: 0,
           duration: 1,
           opacity: 1,
           transform: "perspective(500px) rotateY(0deg) rotateX(0deg)",
@@ -103,7 +103,7 @@ const Projects: NextPage = ({}) => {
             // start: "top top",
             toggleActions: "play none none reverse",
           },
-          y: 315,
+          y: 15,
           duration: 1,
           opacity: 1,
           transform: "perspective(500px) rotateY(0deg) rotateX(0deg)",
@@ -122,7 +122,7 @@ const Projects: NextPage = ({}) => {
             trigger: ".project-card-3",
             toggleActions: "play none none reverse",
           },
-          y: 330,
+          y: 30,
           duration: 1,
           opacity: 1,
           transform: "perspective(500px) rotateY(0deg) rotateX(0deg)",
@@ -141,7 +141,7 @@ const Projects: NextPage = ({}) => {
             trigger: ".project-card-4",
             toggleActions: "play none none reverse",
           },
-          y: 345,
+          y: 45,
           duration: 1,
           opacity: 1,
           transform: "perspective(500px) rotateY(0deg) rotateX(0deg)",
@@ -170,7 +170,7 @@ const Projects: NextPage = ({}) => {
                 {PROJECT_CARDS.map((project) => {
                   return (
                     <div
-                      className={`absolute h-1/2 w-full ${project.color} ${project.id}-image border-2 border-black`}
+                      className={`absolute top-1/4 h-1/2 w-full ${project.color} ${project.id}-image border-2 border-black`}
                     >
                       {project.name}
                     </div>

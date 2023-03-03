@@ -1,6 +1,10 @@
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import Title from "../Title/Title";
 import cx from "classnames";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger);
 
 export interface ITimelineItem {
   title: string;
@@ -24,14 +28,54 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   className,
   isLeft,
 }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref && ref.current) {
+      if (isLeft) {
+        gsap.fromTo(
+          ref.current,
+          { opacity: 0, x: -300 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1.5,
+            ease: "bounce",
+            scrollTrigger: {
+              trigger: ref.current,
+              toggleActions: "play none none reverse",
+              start: "bottom bottom",
+            },
+          }
+        );
+      } else {
+        gsap.fromTo(
+          ref.current,
+          { opacity: 0, x: 300 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1.5,
+            ease: "bounce",
+            scrollTrigger: {
+              trigger: ref.current,
+              toggleActions: "play none none reverse",
+              start: "bottom bottom",
+            },
+          }
+        );
+      }
+    }
+  }, [ref]);
+
   return (
-    <div className={cx(" h-fit w-96 relative", className)}>
+    <div className={cx(" h-fit w-96 relative", className)} ref={ref}>
       <div
         className={cx(
           "absolute w-full h-full border-black border-2 -top-6 -z-0",
           {
             "stripes-background__inverse -left-6": isLeft,
-            "stripes-background -right-6": !isLeft,
+            "stripes-background -right-6 ": !isLeft,
           }
         )}
       ></div>

@@ -15,6 +15,51 @@ body {
     #ffffff 2px,
     #ffffff 20px
   );
+  &__orange {
+    background: repeating-linear-gradient(
+      45deg,
+      #000000,
+      #000000 2px,
+      rgb(253 186 116) 2px,
+      rgb(253 186 116) 20px
+    );
+  }
+  &__blue {
+    background: repeating-linear-gradient(
+      45deg,
+      #000000,
+      #000000 2px,
+      rgb(253 186 116) 2px,
+      rgb(253 186 116) 20px
+    );
+  }
+  &__green {
+    background: repeating-linear-gradient(
+      45deg,
+      #000000,
+      #000000 2px,
+      rgb(253 186 116) 2px,
+      rgb(253 186 116) 20px
+    );
+  }
+  &__yellow {
+    background: repeating-linear-gradient(
+      45deg,
+      #000000,
+      #000000 2px,
+      rgb(253 186 116) 2px,
+      rgb(253 186 116) 20px
+    );
+  }
+  &__red {
+    background: repeating-linear-gradient(
+      45deg,
+      #000000,
+      #000000 2px,
+      rgb(253 186 116) 2px,
+      rgb(253 186 116) 20px
+    );
+  }
   &__inverse {
     background: repeating-linear-gradient(
       -45deg,
