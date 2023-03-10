@@ -28,49 +28,81 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   className,
   isLeft,
 }) => {
-  const ref = useRef(null);
+  const cardRef = useRef(null);
+  const bgRef = useRef(null);
 
   useEffect(() => {
-    if (ref && ref.current) {
-      if (isLeft) {
-        gsap.fromTo(
-          ref.current,
-          { opacity: 0, x: -300 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1.5,
-            ease: "bounce",
-            scrollTrigger: {
-              trigger: ref.current,
-              toggleActions: "play none none reverse",
-              start: "bottom bottom",
-            },
-          }
-        );
-      } else {
-        gsap.fromTo(
-          ref.current,
-          { opacity: 0, x: 300 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1.5,
-            ease: "bounce",
-            scrollTrigger: {
-              trigger: ref.current,
-              toggleActions: "play none none reverse",
-              start: "bottom bottom",
-            },
-          }
-        );
-      }
+    if (isLeft) {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, x: -300 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.5,
+          ease: "bounce",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            toggleActions: "play none none reverse",
+            start: "bottom bottom",
+          },
+        }
+      );
+      gsap.fromTo(
+        bgRef.current,
+        { opacity: 0, x: -300, delay: 0.3 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.5,
+          ease: "power3.in",
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: cardRef.current,
+            toggleActions: "play none none reverse",
+            start: "bottom bottom",
+          },
+        }
+      );
+    } else {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, x: 300, ease: "power3" },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.5,
+          ease: "bounce",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            toggleActions: "play none none reverse",
+            start: "bottom bottom",
+          },
+        }
+      );
+      gsap.fromTo(
+        bgRef.current,
+        { opacity: 0, x: 300, ease: "power3", delay: 0.3 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.5,
+          delay: 0.5,
+          ease: "power3.in",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            toggleActions: "play none none reverse",
+            start: "bottom bottom",
+          },
+        }
+      );
     }
-  }, [ref]);
+  }, []);
 
   return (
-    <div className={cx(" h-fit w-96 relative", className)} ref={ref}>
+    <div className={cx(" h-fit w-96 relative", className)}>
       <div
+        ref={bgRef}
         className={cx(
           "absolute w-full h-full border-black border-2 -top-6 -z-0",
           {
@@ -81,20 +113,40 @@ const TimelineItem: FC<ITimelineItemProps> = ({
       ></div>
       <div
         className={cx(
-          "border-2 border-black px-6 py-6 bg-white relative z-10 ",
+          "border-2 border-black px-6 py-6 bg-white relative z-10 pt-16 ",
           {
-            "box-shadow__top-left": isLeft,
+            "box-shadow__top-left text-right": isLeft,
             "box-shadow__top-right": !isLeft,
           }
         )}
+        ref={cardRef}
       >
-        <Title variant="h3" className="mb-0">
+        <Title
+          variant="h4"
+          className={cx(
+            "absolute -top-2 rounded-full bg-blue-300 border-2 border-black px-6 py-3 mb-0",
+            {
+              "-left-4": !isLeft,
+              "-right-4": isLeft,
+            }
+          )}
+        >
           {title}
         </Title>
-        <p className="text-sm italic mb-2">{tech?.join(", ")}</p>
         <Title variant="h5">{subtitle}</Title>
         <Title variant="h6">{date}</Title>
-        <p>{description}</p>
+        <p className="mb-2">{description}</p>
+        <div
+          className={cx("flex flex-wrap gap-2 text-sm italic mb-2", {
+            "justify-end": isLeft,
+          })}
+        >
+          {tech?.map((item) => (
+            <span className="rounded-full bg-yellow-200 px-3 py-0.5 whitespace-nowrap border border-black">
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
