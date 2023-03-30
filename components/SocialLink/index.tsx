@@ -5,6 +5,7 @@ import { getSocialIcon } from "../../helpers/getSocialIcon";
 
 interface ISocialLinkProps {
   social: SOCIALS;
+  url: string;
 }
 
 const SocialLink: FC<ISocialLinkProps> = ({ social }) => {
@@ -16,8 +17,10 @@ const SocialLink: FC<ISocialLinkProps> = ({ social }) => {
         return "hover:bg-slate-500";
       case SOCIALS.EMAIL:
         return "hover:bg-red-500";
+      case SOCIALS.WEB:
+        return "hover:bg-blue-300";
       default:
-        return "hover:bg-primary-blue-300";
+        return "hover:bg-blue-300";
     }
   };
   return (

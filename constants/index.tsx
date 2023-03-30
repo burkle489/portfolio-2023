@@ -1,4 +1,8 @@
 import { ITimelineItem } from "../components/Timeline/TimelineItem";
+import { IProjectCard } from "../pages/projects";
+import pokeball from "../public/pokeball.svg";
+import pokedexScreenshot from '../public/pokedex-screenshot.png';
+
 
 export const NAV_LINKS = [
   { label: "Home", value: "/" },
@@ -10,6 +14,7 @@ export enum SOCIALS {
   "LINKEDIN" = "linkedin",
   "GITHUB" = "github",
   "EMAIL" = "email",
+  "WEB" = 'web'
 }
 
 export const ABOUT_TIMELINE: ITimelineItem[] = [
@@ -52,4 +57,37 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
       "Web Developer Working on Static Web Apps for Gaming Companies such as Bandai Namco Mobile, Avalanche Studios and Vela Games",
     tech: ["React", "Gatsby", "NextJS", "Netlify", "Serverless Functions"],
   },
+];
+
+export const PROJECT_CARDS: IProjectCard[] = [
+  {
+    name: "Pokedex App",
+    logo: pokeball,
+    screenshot: pokedexScreenshot,
+    id: "project-card-1",
+    description:
+      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
+    tools: [
+      'Typescript',
+      'GatsbyJS',
+      'SCSS',
+    ],
+    github: 'https://github.com/burkle489/pokedex-app',
+    hostedLink: 'https://pokedex-app-rho.vercel.app/',
+  },
+  // {
+  //   name: "Project 2",
+  //   logo: "LOGO",
+  //   screenshot: "SCREENSHOT",
+  //   id: "project-card-2",
+  //   description:
+  //     "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
+  //   tools: [
+  //     'Typescript',
+  //     'GatsbyJS',
+  //     'SCSS',
+  //   ],
+  //   github: 'https://github.com/burkle489/pokedex-app',
+  //   hostedLink: 'https://pokedex-app-rho.vercel.app/',
+  // },
 ];

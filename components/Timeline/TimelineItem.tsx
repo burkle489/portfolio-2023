@@ -43,7 +43,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           ease: "bounce",
           scrollTrigger: {
             trigger: cardRef.current,
-            toggleActions: "play none none reverse",
+            // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
@@ -59,7 +59,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           delay: 0.5,
           scrollTrigger: {
             trigger: cardRef.current,
-            toggleActions: "play none none reverse",
+            // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
@@ -75,7 +75,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           ease: "bounce",
           scrollTrigger: {
             trigger: cardRef.current,
-            toggleActions: "play none none reverse",
+            // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
@@ -91,7 +91,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           ease: "power3.in",
           scrollTrigger: {
             trigger: cardRef.current,
-            toggleActions: "play none none reverse",
+            // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }

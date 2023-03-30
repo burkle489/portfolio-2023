@@ -3,6 +3,7 @@ import { SOCIALS } from "../constants";
 import linkedin from "../public/linkedin-in.svg";
 import email from "../public/email.svg";
 import github from "../public/github.svg";
+import web from "../public/web-icon.svg";
 export const getSocialIcon = (social: SOCIALS) => {
   switch (social) {
     case SOCIALS.LINKEDIN:
@@ -13,6 +14,8 @@ export const getSocialIcon = (social: SOCIALS) => {
       return <Image src={email} alt="email logo" width={32} height={32} />;
     case SOCIALS.GITHUB:
       return <Image src={github} alt="linkedin logo" width={32} height={32} />;
+    case SOCIALS.WEB:
+      return <Image src={web} alt="web logo" width={32} height={32} />;
     default:
       return <div></div>;
   }
