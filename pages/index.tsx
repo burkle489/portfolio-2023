@@ -1,26 +1,28 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import { useState } from "react";
-import { CopyToClipboardBtn } from "../components/CopyToClipboardBtn";
-import Header from "../components/Header";
-import cx from "classnames";
-import HomePageLink from "../components/HomePageLink";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faL } from "@fortawesome/free-solid-svg-icons";
-import linkedin from "../public/linkedin-in.svg";
-import { SOCIALS } from "../constants";
-import SocialLink from "../components/SocialLink";
+import type { NextPage } from "next"
+import Head from "next/head"
+import Image from "next/image"
+import { useState } from "react"
+import { CopyToClipboardBtn } from "../components/CopyToClipboardBtn"
+import Header from "../components/Header"
+import cx from "classnames"
+import HomePageLink from "../components/HomePageLink"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faL } from "@fortawesome/free-solid-svg-icons"
+import linkedin from "../public/linkedin-in.svg"
+import { SOCIALS } from "../constants"
+import SocialLink from "../components/SocialLink"
+import ContactModal from "../components/ContactModal"
 
-const firstName = ["T", "A", "Y", "L", "E", "R"];
-const lastName = ["B", "U", "R", "K", "E"];
+const firstName = ["T", "A", "Y", "L", "E", "R"]
+const lastName = ["B", "U", "R", "K", "E"]
 
 const Home: NextPage = () => {
-  const [isHoveringMiddle, setIsHoveringMiddle] = useState<boolean>(false);
-  const [isHoveringProjects, setIsHoveringProjects] = useState<boolean>(false);
-  const [isHoveringAbout, setIsHoveringAbout] = useState<boolean>(false);
-  const [isHoveringContact, setIsHoveringContact] = useState<boolean>(false);
-  const [isHoveringSocials, setIsHoveringSocials] = useState<boolean>(false);
+  const [isHoveringMiddle, setIsHoveringMiddle] = useState<boolean>(false)
+  const [isHoveringProjects, setIsHoveringProjects] = useState<boolean>(false)
+  const [isHoveringAbout, setIsHoveringAbout] = useState<boolean>(false)
+  const [isHoveringContact, setIsHoveringContact] = useState<boolean>(false)
+  const [isHoveringSocials, setIsHoveringSocials] = useState<boolean>(false)
+  const [openContact, setOpenContact] = useState<boolean>(false)
 
   return (
     <div
@@ -86,10 +88,10 @@ const Home: NextPage = () => {
             }
           )}
           onMouseEnter={() => {
-            setIsHoveringMiddle(true);
+            setIsHoveringMiddle(true)
           }}
           onMouseLeave={() => {
-            setIsHoveringMiddle(false);
+            setIsHoveringMiddle(false)
           }}
         >
           {isHoveringMiddle ? (
@@ -143,17 +145,19 @@ const Home: NextPage = () => {
         >
           <SocialLink social={SOCIALS.LINKEDIN} />
           <SocialLink social={SOCIALS.GITHUB} />
-          <SocialLink social={SOCIALS.EMAIL} />
         </HomePageLink>
         <div
+          onClick={() => {
+            setOpenContact(true)
+          }}
           onMouseEnter={() => {
-            setIsHoveringContact(true);
+            setIsHoveringContact(true)
           }}
           onMouseLeave={() => {
-            setIsHoveringContact(false);
+            setIsHoveringContact(false)
           }}
           className={cx(
-            "absolute bottom-[10%] right-[10%] w-[calc(80%/1.5)] h-[calc(80%/3)] hover:w-[calc(20%+(80%/1.5))] hover:h-[calc(20%+(80%/3))] hover:bottom-0 hover:right-0 border-4 transition-all duration-500 border-t-black border-l-0 border-b-0 border-r-0 flex justify-center items-center hover:bg-red-300",
+            "cursor-pointer absolute bottom-[10%] right-[10%] w-[calc(80%/1.5)] h-[calc(80%/3)] hover:w-[calc(20%+(80%/1.5))] hover:h-[calc(20%+(80%/3))] hover:bottom-0 hover:right-0 border-4 transition-all duration-500 border-t-black border-l-0 border-b-0 border-r-0 flex justify-center items-center hover:bg-red-300",
             {
               "!h-[20%] !w-[60%]": isHoveringMiddle,
               "!w-[calc((80%/3)+20%)] !h-[calc(((80%/1.5)-10%)-(80%/3))] !bottom-[10%] !right-[calc(-20%+(80%/3))]":
@@ -167,9 +171,16 @@ const Home: NextPage = () => {
         >
           <h2 className="text-3xl">CONTACT</h2>
         </div>
+        {openContact && (
+          <ContactModal
+            setClose={() => {
+              setOpenContact(false)
+            }}
+          />
+        )}
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

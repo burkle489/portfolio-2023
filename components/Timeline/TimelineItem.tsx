@@ -1,22 +1,22 @@
-import { FC, useEffect, useRef } from "react";
-import Title from "../Title/Title";
-import cx from "classnames";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { FC, useEffect, useRef } from "react"
+import Title from "../Title/Title"
+import cx from "classnames"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 
-if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger);
+if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
 export interface ITimelineItem {
-  title: string;
-  subtitle: string;
-  date: string;
-  description: string;
-  tech?: string[];
+  title: string
+  subtitle: string
+  date: string
+  description: string
+  tech?: string[]
 }
 
 interface ITimelineItemProps extends ITimelineItem {
-  className?: string;
-  isLeft: boolean;
+  className?: string
+  isLeft: boolean
 }
 
 const TimelineItem: FC<ITimelineItemProps> = ({
@@ -28,8 +28,8 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   className,
   isLeft,
 }) => {
-  const cardRef = useRef(null);
-  const bgRef = useRef(null);
+  const cardRef = useRef(null)
+  const bgRef = useRef(null)
 
   useEffect(() => {
     if (isLeft) {
@@ -40,30 +40,31 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           opacity: 1,
           x: 0,
           duration: 1.5,
-          ease: "bounce",
+          ease: "back",
           scrollTrigger: {
             trigger: cardRef.current,
             // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
-      );
+      )
       gsap.fromTo(
         bgRef.current,
-        { opacity: 0, x: -300, delay: 0.3 },
+        { opacity: 0, x: -10, y: -10, delay: 1 },
         {
           opacity: 1,
           x: 0,
+          y: 0,
           duration: 1.5,
-          ease: "power3.in",
-          delay: 0.5,
+          ease: "power2",
+          delay: 1,
           scrollTrigger: {
             trigger: cardRef.current,
             // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
-      );
+      )
     } else {
       gsap.fromTo(
         cardRef.current,
@@ -72,42 +73,43 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           opacity: 1,
           x: 0,
           duration: 1.5,
-          ease: "bounce",
+          ease: "back",
           scrollTrigger: {
             trigger: cardRef.current,
             // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
-      );
+      )
       gsap.fromTo(
         bgRef.current,
-        { opacity: 0, x: 300, ease: "power3", delay: 0.3 },
+        { opacity: 0, x: 10, y: -10, ease: "power2", delay: 1 },
         {
           opacity: 1,
           x: 0,
+          y: 0,
           duration: 1.5,
-          delay: 0.5,
-          ease: "power3.in",
+          delay: 1,
+          ease: "power2",
           scrollTrigger: {
             trigger: cardRef.current,
             // toggleActions: "play none none reverse",
             start: "bottom bottom",
           },
         }
-      );
+      )
     }
-  }, []);
+  }, [])
 
   return (
     <div className={cx(" h-fit w-96 relative", className)}>
       <div
         ref={bgRef}
         className={cx(
-          "absolute w-full h-full border-black border-2 -top-6 -z-0",
+          "absolute w-full h-full border-black border-2 -top-6 -z-0 bg-white",
           {
-            "stripes-background__inverse -left-6": isLeft,
-            "stripes-background -right-6 ": !isLeft,
+            " -left-6": isLeft,
+            " -right-6 ": !isLeft,
           }
         )}
       ></div>
@@ -149,7 +151,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TimelineItem;
+export default TimelineItem
