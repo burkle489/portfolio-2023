@@ -14,7 +14,7 @@ if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
 export interface IProjectCard {
   name?: string
-  logo?: string
+  logo?: StaticImageData
   screenshot?: StaticImageData
   id?: string
   description?: string
