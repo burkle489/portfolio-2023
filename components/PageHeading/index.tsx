@@ -37,21 +37,31 @@ export const PageHeading: FC<IPageHeadingProps> = ({
 
   return (
     <Container
-      className="h-[60vh] border-y-2 border-[#999999] bg-white"
-      innerClassName="flex items-center"
+      className="relative min-h-[60vh] border-y-4 border-[#000] bg-white flex flex-col justify-center items-center"
+      innerClassName="flex items-center "
     >
-      <div className="w-3/5 flex flex-col justify-center overflow-hidden">
-        <Title variant="h1" timeline={timeline}>
-          {title}
-        </Title>
-        {description && <p ref={descriptionRef}>{description}</p>}
-      </div>
-      {hasButtons && (
-        <div className="flex gap-6 w-2/5 justify-center">
-          <SocialLink social={SOCIALS.LINKEDIN} />
-          <SocialLink social={SOCIALS.GITHUB} />
+      <div className="w-full h-full flex items-center justify-start">
+        <div className="w-3/5 flex flex-col justify-center overflow-hidden">
+          <Title variant="h1" className="text-[9rem]" timeline={timeline}>
+            {title}
+          </Title>
+          {description && (
+            <h2 className="text-3xl" ref={descriptionRef}>
+              {description}
+            </h2>
+          )}
         </div>
-      )}
+        {hasButtons && (
+          <div className="flex gap-6 w-2/5 justify-center">
+            <SocialLink social={SOCIALS.LINKEDIN} />
+            <SocialLink social={SOCIALS.GITHUB} />
+          </div>
+        )}
+        <div className="absolute right-8 bottom-8 h-full flex items-center justify-end flex-col">
+          <div className=" w-[1px] h-3/5 bg-black" />
+          <p>tb.</p>
+        </div>
+      </div>
     </Container>
   )
 }

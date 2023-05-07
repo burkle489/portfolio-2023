@@ -51,7 +51,7 @@ const Projects: NextPage = ({}) => {
 
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-white h-40"></div>
       </div>
-      <Container Tag="section" className="!pb-0">
+      <Container className="!pb-0">
         <div className="relative" ref={projectsScrollContainer}>
           <div className="w-full h-full min-h-[100vh]">
             <div className="sticky-showcase min-h-[100vh] h-[100vh] sticky w-1/2 top-0 left-0 flex justify-center items-center pt-20 translate-x-[0%] transition-all duration-700">

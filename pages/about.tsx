@@ -35,10 +35,10 @@ const About: NextPage = ({}) => {
         />
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-white h-40"></div>
       </div>
-      <Container innerClassName="flex justify-center items-center">
-        <div className="rounded-full border-2 border-black w-32 h-32 flex flex-col gap-2 justify-center items-center">
-          <div className="bg-black w-0.5 h-16" />
+      <Container innerClassName="flex justify-end items-center">
+        <div className="rounded-full  w-32 h-32 flex flex-col gap-2 justify-center items-center">
           <p className="text-xl">tb.</p>
+          <div className="bg-black w-0.5 h-32" />
         </div>
       </Container>
       <Container className="">
