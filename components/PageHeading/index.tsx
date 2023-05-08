@@ -27,41 +27,52 @@ export const PageHeading: FC<IPageHeadingProps> = ({
     const ctx = gsap.context(() => {
       timeline.current.fromTo(
         descriptionRef.current,
-        { y: 1000 },
-        { y: 0, delay: 0.2, duration: 1.5, ease: "power1" },
-        "first"
+        { y: 3000 },
+        { y: 0, delay: 0.075, duration: 1.5, ease: "exponential" },
+        "-=1.35"
       )
     }, timeline.current)
     return () => ctx.revert()
   }, [])
 
   return (
-    <Container
-      className="relative min-h-[60vh] border-y-4 border-[#000] bg-white flex flex-col justify-center items-center"
-      innerClassName="flex items-center "
-    >
-      <div className="w-full h-full flex items-center justify-start">
-        <div className="w-3/5 flex flex-col justify-center overflow-hidden">
-          <Title variant="h1" className="text-[9rem]" timeline={timeline}>
-            {title}
-          </Title>
-          {description && (
-            <h2 className="text-3xl" ref={descriptionRef}>
-              {description}
-            </h2>
-          )}
+    <section className="relative border-main-blue bg-very-light-blue flex flex-col justify-center items-center py-32 pt-52">
+      <div className="relative w-full h-full flex justify-start">
+        <div className="w-full flex flex-col justify-start overflow-hidden">
+          <div className="overflow-hidden">
+            <Title
+              variant="h1"
+              className="!text-[13rem] !font-thin relative mb-8 text-main-blue pl-8"
+              timeline={timeline}
+            >
+              {title}
+            </Title>
+            <div className="h-1 w-full bg-main-blue" />
+            {description && (
+              <div className="relative w-4/5 mt-12">
+                {/* <div className="w-0.5 h-8 bg-[#000] absolute left-3 top-1" /> */}
+                {/* <div className="w-1 h-20 bg-[#999] absolute left-5 top-1" /> */}
+                <h2
+                  className="text-4xl pl-20 text-main-blue"
+                  ref={descriptionRef}
+                >
+                  {description}
+                </h2>
+              </div>
+            )}
+          </div>
         </div>
-        {hasButtons && (
+        {/* {hasButtons && (
           <div className="flex gap-6 w-2/5 justify-center">
             <SocialLink social={SOCIALS.LINKEDIN} />
             <SocialLink social={SOCIALS.GITHUB} />
           </div>
-        )}
-        <div className="absolute right-8 bottom-8 h-full flex items-center justify-end flex-col">
-          <div className=" w-[1px] h-3/5 bg-black" />
-          <p>tb.</p>
+        )} */}
+        <div className="absolute right-8 -top-8 h-full flex items-center justify-start flex-col">
+          <div className=" w-[1px] h-3/5 bg-light-blue" />
+          <p className="text-light-blue">tb.</p>
         </div>
       </div>
-    </Container>
+    </section>
   )
 }

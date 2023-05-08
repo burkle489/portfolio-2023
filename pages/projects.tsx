@@ -32,24 +32,21 @@ const Projects: NextPage = ({}) => {
   useEffect(() => {
     if (!headerRef || !headerRef.current) return
     const ctx = gsap.context(() => {
-      gsap.fromTo(headerRef.current, { y: -1000 }, { y: 0, duration: 1 })
+      gsap.fromTo(headerRef.current, { y: -3000 }, { y: 0, duration: 1 })
     }, headerRef.current)
     return () => ctx.revert()
   }, [])
 
   return (
-    <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-white">
+    <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
       <Header />
-      <div
-        className="py-32 pt-52 honeycomb-header-background relative"
-        ref={headerRef}
-      >
+      <div className="py-32 pt-52  relative" ref={headerRef}>
         <PageHeading
-          title="Project Showcase"
+          title="Projects"
           description="Project showcase description"
         />
 
-        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-white h-40"></div>
+        {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-[#e3e8fa] h-40"></div> */}
       </div>
       <Container className="!pb-0">
         <div className="relative" ref={projectsScrollContainer}>

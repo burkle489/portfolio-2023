@@ -6,18 +6,21 @@ interface IContainerProps {
   children: React.ReactNode
   className?: string
   innerClassName?: string
+  innerRef?: MutableRefObject<any>
 }
 
 const Container: FC<IContainerProps> = ({
   children,
+  innerRef,
   className,
   innerClassName,
 }) => {
   return (
-    <section className={cx("p-12 md:p-20 xl:p-32 w-full h-full", className)}>
-      <div
-        className={cx("max-w-[1500px] w-full h-full mx-auto", innerClassName)}
-      >
+    <section
+      ref={innerRef}
+      className={cx("p-12 md:p-20 xl:p-32 w-full h-full", className)}
+    >
+      <div className={cx(" w-full h-full mx-auto", innerClassName)}>
         {children}
       </div>
     </section>

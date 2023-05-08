@@ -23,7 +23,7 @@ const Title: FC<ITitleProps> = ({
       timeline.current.fromTo(
         ref.current,
         { y: 1000 },
-        { y: 0, duration: 1, ease: "power1" }
+        { y: 0, duration: 1.1, ease: "power1", delay: 0.075 }
       )
     }, timeline.current)
     return () => ctx.revert()

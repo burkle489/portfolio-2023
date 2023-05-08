@@ -9,11 +9,11 @@ body {
 .stripes-header-background {
   &__inverse {
     background: repeating-linear-gradient(
-      -45deg,
-      #999,
-      #999 2px,
-      #ffffff 2px,
-      #ffffff 30px
+      -60deg,
+      rgba(38, 71, 171, 0.2),
+      rgba(38, 71, 171, 0.2) 2px,
+      #f0f3fc 2px,
+      #f0f3fc 30px
     );
   }
 }
@@ -21,7 +21,7 @@ body {
 .honeycomb-header-background {
   background: radial-gradient(
         circle farthest-side at 0% 50%,
-        #fff 23.5%,
+        #fcffff 23.5%,
         rgba(240, 166, 17, 0) 0
       )
       21px 30px,
@@ -32,43 +32,43 @@ body {
       )
       19px 30px,
     linear-gradient(
-        #fff 14%,
+        #fcffff 14%,
         rgba(240, 166, 17, 0) 0,
         rgba(240, 166, 17, 0) 85%,
-        #fff 0
+        #fcffff 0
       )
       0 0,
     linear-gradient(
         150deg,
-        #fff 24%,
+        #fcffff 24%,
         #999 0,
         #999 26%,
         rgba(240, 166, 17, 0) 0,
         rgba(240, 166, 17, 0) 74%,
         #999 0,
         #999 76%,
-        #fff 0
+        #fcffff 0
       )
       0 0,
     linear-gradient(
         30deg,
-        #fff 24%,
+        #fcffff 24%,
         #999 0,
         #999 26%,
         rgba(240, 166, 17, 0) 0,
         rgba(240, 166, 17, 0) 74%,
         #999 0,
         #999 76%,
-        #fff 0
+        #fcffff 0
       )
       0 0,
-    linear-gradient(90deg, #999 2%, #fff 0, #fff 98%, #999 0%) 0 0 #fff;
+    linear-gradient(90deg, #999 2%, #fcffff 0, #fcffff 98%, #999 0%) 0 0 #fcffff;
   background-size: 40px 60px;
 }
 
 .stripes-background {
   background: repeating-linear-gradient(
-    45deg,
+    60deg,
     #000000,
     #000000 2px,
     #ffffff 2px,
@@ -191,4 +191,11 @@ body {
       0 0,
     linear-gradient(90deg, #999 2%, #fff 0, #fff 98%, #999 0%) 0 0 #fff;
   background-size: 40px 60px;
+}
+
+.border-top-clip {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+.border-bottom-clip {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
 }

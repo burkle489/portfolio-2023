@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import Header from "../components/Header";
+import { NextPage } from "next"
+import Header from "../components/Header"
 
 const Contact: NextPage = ({}) => {
   return (
@@ -8,7 +8,7 @@ const Contact: NextPage = ({}) => {
       <Header />
       <h1 className="text-6xl">Contact</h1>{" "}
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact
