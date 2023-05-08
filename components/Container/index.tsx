@@ -18,7 +18,7 @@ const Container: FC<IContainerProps> = ({
   return (
     <section
       ref={innerRef}
-      className={cx("p-12 md:p-20 xl:p-32 w-full h-full", className)}
+      className={cx("py-12 md:py-20 xl:py-32 w-full h-full", className)}
     >
       <div className={cx(" w-full h-full mx-auto", innerClassName)}>
         {children}

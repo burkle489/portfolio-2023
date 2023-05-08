@@ -12,6 +12,7 @@ import { PageHeading } from "../components/PageHeading"
 import Image from "next/image"
 import stamp from "../public/stamp.png"
 import { useIsIntersectingLeftScreen } from "../hooks/useIsVisible"
+const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
 const About: NextPage = ({}) => {
   const headerRef = useRef(null)
@@ -26,6 +27,11 @@ const About: NextPage = ({}) => {
   const carouselBottomBorder = useRef(null)
 
   const resetIsVisible = useIsIntersectingLeftScreen(resetRef)
+
+  useEffect(() => {
+    if (!isBrowser()) return
+    window.scrollTo({ top: 0 })
+  }, [])
 
   useEffect(() => {
     if (!headerRef || !headerRef.current) return
@@ -86,7 +92,7 @@ const About: NextPage = ({}) => {
         .addLabel("second", 1)
         .fromTo(
           carouselInner.current,
-          { y: 1000 },
+          { y: 2000 },
           {
             y: 0,
           },
@@ -136,7 +142,7 @@ const About: NextPage = ({}) => {
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div>
       </div>
       <Container
-        className="!pt-20 mb-10"
+        className="!pt-20 mb-20"
         innerClassName="flex justify-center items-center relative"
         // innerRef={stampContainer}
       >

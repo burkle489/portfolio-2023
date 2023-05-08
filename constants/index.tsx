@@ -20,7 +20,7 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
   {
     title: "Chemistry Degree - 2.1 BSC",
     subtitle: "University of Manchester",
-    date: "",
+    date: "Sep 2016 - July 2019",
     description:
       "Finished my Integrated Masters a year early to graduate with a Bachelors and pursue Web Development.",
     tech: undefined,
@@ -37,8 +37,9 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
     title: "App Software Engineer",
     subtitle: "AVAMAE Software Solutions Ltd.",
     date: "Jun 2020 - Dec 2021",
-    description: "",
-    tech: ["React", "Redux"],
+    description:
+      "This was my first React-based role, initially I worked closely with a mentor and within 9 months was the main Front-End Developer owning my own project. Working closely with Project Managers, and advising a Junior Developer.",
+    tech: ["React", "Redux", "SASS"],
   },
   {
     title: "Web Developer",
@@ -46,15 +47,15 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
     date: "Jan 2022 - Aug 2022",
     description:
       "Front-End Web Developer role working on a financial services product in a team of 15-20.",
-    tech: ["React", "Redux"],
+    tech: ["React", "Redux", "CSS"],
   },
   {
     title: "Web Developer",
     subtitle: "Fluid",
     date: "Aug 2022 - Present",
     description:
-      "Web Developer Working on Static Web Apps for Gaming Companies such as Bandai Namco Mobile, Avalanche Studios and Vela Games",
-    tech: ["React", "Gatsby", "NextJS", "Netlify", "Serverless Functions"],
+      "Web Developer Working on Modern Web Apps for Gaming Companies such as Bandai Namco Mobile, Gameloft and Team17",
+    tech: ["React", "NextJS", "Gatsby", "Netlify", "Vercel", "Tailwind"],
   },
 ]
 

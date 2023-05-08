@@ -16,7 +16,6 @@ export interface ITimelineItem {
 
 interface ITimelineItemProps extends ITimelineItem {
   className?: string
-  isLeft: boolean
 }
 
 const TimelineItem: FC<ITimelineItemProps> = ({
@@ -26,131 +25,104 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   description,
   tech,
   className,
-  isLeft,
 }) => {
-  const cardRef = useRef(null)
-  const bgRef = useRef(null)
+  const dateHeader = useRef(null)
+  const container = useRef(null)
+  const topBorder = useRef(null)
+  const bottomBorder = useRef(null)
+  const scrollTrigger = useRef(null)
 
   useEffect(() => {
-    if (isLeft) {
-      gsap.fromTo(
-        cardRef.current,
-        { opacity: 0, x: -300 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1.5,
-          ease: "back",
+    // if (!carouselWrapperRef || !carouselWrapperRef.current) return
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({
           scrollTrigger: {
-            trigger: cardRef.current,
-            // toggleActions: "play none none reverse",
-            start: "bottom bottom",
+            trigger: scrollTrigger.current,
+            start: "top bottom",
           },
-        }
-      )
-      gsap.fromTo(
-        bgRef.current,
-        { opacity: 0, x: -10, y: -10, delay: 1 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration: 1.5,
-          ease: "power2",
-          delay: 1,
-          scrollTrigger: {
-            trigger: cardRef.current,
-            // toggleActions: "play none none reverse",
-            start: "bottom bottom",
+        })
+        .addLabel("first", 0)
+        .addLabel("second", 1)
+        .fromTo(
+          container.current,
+          { y: 2000 },
+          {
+            y: 0,
           },
-        }
-      )
-    } else {
-      gsap.fromTo(
-        cardRef.current,
-        { opacity: 0, x: 300, ease: "power3" },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1.5,
-          ease: "back",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            // toggleActions: "play none none reverse",
-            start: "bottom bottom",
+          "first"
+        )
+        .fromTo(
+          topBorder.current,
+          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            duration: 2,
+            ease: "power4",
           },
-        }
-      )
-      gsap.fromTo(
-        bgRef.current,
-        { opacity: 0, x: 10, y: -10, ease: "power2", delay: 1 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration: 1.5,
-          delay: 1,
-          ease: "power2",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            // toggleActions: "play none none reverse",
-            start: "bottom bottom",
+          "second"
+        )
+        .fromTo(
+          bottomBorder.current,
+          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            duration: 2,
+            delay: 0.2,
+            ease: "power4",
           },
-        }
-      )
-    }
+          "second"
+        )
+        .fromTo(dateHeader.current, { y: 200 }, { y: 0 }, "-=2")
+    })
+    return () => ctx.revert()
   }, [])
 
   return (
-    <div className={cx(" h-fit w-96 relative", className)}>
-      <div
-        ref={bgRef}
-        className={cx(
-          "absolute w-full h-full border-black border-2 -top-6 -z-0 bg-white",
-          {
-            " -left-6": isLeft,
-            " -right-6 ": !isLeft,
-          }
-        )}
-      ></div>
+    <>
       <div
         className={cx(
-          "border-2 border-black px-6 py-6 bg-white relative z-10 pt-16 ",
-          {
-            "box-shadow__top-left text-right": isLeft,
-            "box-shadow__top-right": !isLeft,
-          }
+          " h-full w-full relative flex flex-col justify-center items-center mb-28 ",
+          className
         )}
-        ref={cardRef}
+        ref={container}
       >
-        <Title
-          variant="h4"
-          className={cx(
-            "absolute -top-2 rounded-full bg-blue-300 border-2 border-black px-6 py-3 mb-0",
-            {
-              "-left-4": !isLeft,
-              "-right-4": isLeft,
-            }
-          )}
-        >
-          {title}
-        </Title>
-        <Title variant="h5">{subtitle}</Title>
-        <Title variant="h6">{date}</Title>
-        <p className="mb-2">{description}</p>
         <div
-          className={cx("flex flex-wrap gap-2 text-sm italic mb-2", {
-            "justify-end": isLeft,
-          })}
+          className="w-full flex flex-col justify-center items-center overflow-hidden"
+          // ref={dateHeader}
         >
-          {tech?.map((item) => (
-            <span className="rounded-full bg-yellow-200 px-3 py-0.5 whitespace-nowrap border border-black">
-              {item}
-            </span>
-          ))}
+          {date && (
+            <div
+              className="relative border-4 border-main-blue border-b-0"
+              ref={dateHeader}
+            >
+              <Title variant="h5" className="!mb-0 py-3 px-4">
+                {date}
+              </Title>
+            </div>
+          )}
+          <div className=" bg-main-blue h-1 w-full" ref={topBorder} />
         </div>
+        <div className="w-full h-full flex justify-between px-8 mt-8 mb-8">
+          <div className="w-full flex items-center justify-center gap-20">
+            <div className="w-[40%]">
+              <Title variant="h2">{title}</Title>
+              <Title variant="h3">{subtitle}</Title>
+            </div>
+            <div className="w-[60%] flex flex-col gap-8">
+              <Title variant="h5">{description}</Title>
+              <div className="flex justify-end">
+                {tech?.map((t) => (
+                  <p className="text-xl uppercase font-thin pr-8">{t}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" bg-main-blue h-1 w-full mb-4" ref={bottomBorder} />
       </div>
-    </div>
+      <div ref={scrollTrigger} />
+    </>
   )
 }
 
