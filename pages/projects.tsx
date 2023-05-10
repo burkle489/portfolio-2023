@@ -1,33 +1,28 @@
 import { NextPage } from "next"
-import { useEffect, useLayoutEffect, useRef } from "react"
+import { FC, useEffect, useRef } from "react"
 import Container from "../components/Container"
 import Header from "../components/Header"
+import SocialLink from "../components/SocialLink"
+import Timeline from "../components/Timeline"
+import TimelineItem from "../components/Timeline/TimelineItem"
 import Title from "../components/Title/Title"
+import { ABOUT_TIMELINE, PROJECT_CARDS, SOCIALS } from "../constants"
 import gsap from "gsap"
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
-import { ProjectCard } from "../components/ProjectCard"
-import { PROJECT_CARDS } from "../constants"
-import { StaticImageData } from "next/image"
 import { PageHeading } from "../components/PageHeading"
+import Image from "next/image"
+import stamp from "../public/stamp.png"
+import cx from "classnames"
+import { ProjectCard } from "../components/ProjectCard"
+const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
-if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
-
-export interface IProjectCard {
-  name?: string
-  logo?: StaticImageData
-  screenshot?: StaticImageData
-  id?: string
-  description?: string
-  tools?: string[]
-  github?: string
-  hostedLink?: string
-  hasCard: boolean
-}
-
-const Projects: NextPage = ({}) => {
-  const tl: any = useRef(null)
-  const projectsScrollContainer = useRef(null)
+const About: NextPage = ({}) => {
   const headerRef = useRef(null)
+  const stampRef = useRef(null)
+
+  useEffect(() => {
+    if (!isBrowser()) return
+    window.scrollTo({ top: 0 })
+  }, [])
 
   useEffect(() => {
     if (!headerRef || !headerRef.current) return
@@ -37,49 +32,77 @@ const Projects: NextPage = ({}) => {
     return () => ctx.revert()
   }, [])
 
+  useEffect(() => {
+    if (!stampRef || !stampRef.current) return
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline()
+        .fromTo(
+          stampRef.current,
+          { rotation: 0, y: -3000 },
+          { rotation: 360, y: 0, duration: 1 }
+        )
+      // gsap.to(stampRef.current, {
+      //   scrollTrigger: {
+      //     trigger: "html",
+      //     pin: true,
+      //     scrub: 0.2,
+      //     start: "top top",
+      //     end: "+=10000",
+      //   },
+      //   rotation: 360 * 5,
+      //   duration: 1,
+      //   ease: "none",
+      // })
+    }, stampRef.current)
+    return () => ctx.revert()
+  }, [])
+
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
       <Header />
-      <div className="py-32 pt-52  relative" ref={headerRef}>
-        <PageHeading
-          title="Projects"
-          description="Project showcase description"
-        />
-
-        {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-[#e3e8fa] h-40"></div> */}
-      </div>
-      <Container className="!pb-0">
-        <div className="relative" ref={projectsScrollContainer}>
-          <div className="w-full h-full min-h-[100vh]">
-            <div className="sticky-showcase min-h-[100vh] h-[100vh] sticky w-1/2 top-0 left-0 flex justify-center items-center pt-20 translate-x-[0%] transition-all duration-700">
-              <div className="relative w-full h-full">
-                {PROJECT_CARDS.map((project) => {
-                  if (!project.hasCard) return
-                  return <ProjectCard {...{ ...project, className: "" }} />
-                })}
-                {/* <div
-                  className={`absolute h-1/2 w-full bg-red-400 project-card-1-image`}
-                >
-                  Project 1
-                </div> */}
-              </div>
-            </div>
-            <div className="min-h-[100vh] flex flex-col items-end">
-              {PROJECT_CARDS.map((project) => (
-                <div className={`h-[100vh] w-[40%] text-2xl ${project.id}`}>
-                  {project.description}
-                </div>
-              ))}
-              {/* <div className={`h-[100vh] w-1/2 project-card-1`}> */}
-              {/* Lorem ipsum dolor sit amet. */}
-              {/* {project.description} */}
-              {/* </div> */}
+      <div className="h-screen w-full">
+        <div className="relative" ref={headerRef}>
+          <PageHeading
+            title="Projects"
+            description="I have worked on a variety of projects in my professional roles."
+            secondDescription="Industries include Gaming, Financial Services, Psychometric Testing, Farming Tech and even Nandos!"
+          />
+          {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div> */}
+        </div>
+        <Container
+          className="!pt-20 mb-20 !h-fit"
+          innerClassName="flex justify-center items-center relative"
+          // innerRef={stampContainer}
+        >
+          <div ref={stampRef} className="relative">
+            <Image alt="stamp" src={stamp} width={200} height={200} />
+            <div className="absolute top-[calc(50%-11px)] left-[calc(50%-12px)] w-[24px] h-[22px]">
+              tb.
             </div>
           </div>
+        </Container>
+      </div>
+
+      <Container>
+        <div className="w-full h-full grid grid-cols-2 mx-auto px-12">
+          {PROJECT_CARDS.map((project, index) => (
+            <ProjectCard {...{ ...project, index }} />
+          ))}
         </div>
       </Container>
     </div>
   )
 }
 
-export default Projects
+export default About
+
+const AutoCarouselItem: FC<{ text: string; className?: string }> = ({
+  text,
+}) => {
+  return (
+    <span className="text-8xl px-16 group-hover:text-very-light-blue">
+      {text}
+    </span>
+  )
+}

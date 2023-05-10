@@ -72,7 +72,8 @@ const About: NextPage = ({}) => {
     const ctx = gsap.context(() => {
       carouselTimeline.current.to(carouselWrapperRef.current, {
         x: -7000,
-        duration: 100,
+        duration: 60,
+        ease: "none",
       })
     }, carouselTimeline.current)
     return () => ctx.revert()
@@ -132,27 +133,29 @@ const About: NextPage = ({}) => {
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
       <Header />
-      <div className="relative" ref={headerRef}>
-        <PageHeading
-          title="About Me"
-          description=" Front-End Web Developer with 4+ years commercial experience
-              specialising in React and React-based frameworks."
-          hasButtons
-        />
-        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div>
-      </div>
-      <Container
-        className="!pt-20 mb-20"
-        innerClassName="flex justify-center items-center relative"
-        // innerRef={stampContainer}
-      >
-        <div ref={stampRef} className="relative">
-          <Image alt="stamp" src={stamp} width={200} height={200} />
-          <div className="absolute top-[calc(50%-11px)] left-[calc(50%-12px)] w-[24px] h-[22px]">
-            tb.
-          </div>
+      <div className="h-screen w-full">
+        <div className="relative" ref={headerRef}>
+          <PageHeading
+            title="About Me"
+            description=" Front-End Web Developer with 4+ years commercial experience
+          specialising in React and React-based frameworks."
+            hasButtons
+          />
+          {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div> */}
         </div>
-      </Container>
+        <Container
+          className="!pt-20 mb-20 !h-fit"
+          innerClassName="flex justify-center items-center relative"
+          // innerRef={stampContainer}
+        >
+          <div ref={stampRef} className="relative">
+            <Image alt="stamp" src={stamp} width={200} height={200} />
+            <div className="absolute top-[calc(50%-11px)] left-[calc(50%-12px)] w-[24px] h-[22px]">
+              tb.
+            </div>
+          </div>
+        </Container>
+      </div>
       <div ref={carouselScrollTrigger} />
       <Container
         innerRef={carouselInner}

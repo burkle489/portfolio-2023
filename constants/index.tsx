@@ -2,6 +2,8 @@ import { ITimelineItem } from "../components/Timeline/TimelineItem"
 import { IProjectCard } from "../pages/projects"
 import pokeball from "../public/pokeball.svg"
 import pokedexScreenshot from "../public/pokedex-screenshot.png"
+import pokedexScreenshot2 from "../public/pokedex-red.png"
+import pokedexScreenshot3 from "../public/pokedex-blue.png"
 
 export const NAV_LINKS = [
   { label: "Home", value: "/" },
@@ -63,7 +65,42 @@ export const PROJECT_CARDS: IProjectCard[] = [
   {
     name: "Pokedex App",
     logo: pokeball,
+    logoAlt: "pokeball",
+    screenshot: pokedexScreenshot2,
+    bgPosition: "50% 50%",
+    projectType: "personal",
+
+    id: "project-card-1",
+    description:
+      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
+    tools: ["Typescript", "GatsbyJS", "SCSS"],
+    github: "https://github.com/burkle489/pokedex-app",
+    hostedLink: "https://pokedex-app-rho.vercel.app/",
+    hasCard: true,
+  },
+  {
+    name: "Pokedex App",
+    logo: pokeball,
+    logoAlt: "pokeball",
+    screenshot: pokedexScreenshot3,
+    bgPosition: "50% 50%",
+    projectType: "personal",
+    screenshotAlt: "screenshot of pokedex app project",
+    id: "project-card-1",
+    description:
+      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
+    tools: ["Typescript", "GatsbyJS", "SCSS"],
+    github: "https://github.com/burkle489/pokedex-app",
+    hostedLink: "https://pokedex-app-rho.vercel.app/",
+    hasCard: true,
+  },
+  {
+    name: "Pokedex App",
+    logo: pokeball,
+    logoAlt: "pokeball",
     screenshot: pokedexScreenshot,
+    bgPosition: "50% 50%",
+    projectType: "personal",
     id: "project-card-1",
     description:
       "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
