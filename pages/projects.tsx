@@ -15,7 +15,7 @@ import cx from "classnames"
 import { ProjectCard } from "../components/ProjectCard"
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
-const About: NextPage = ({}) => {
+const Projects: NextPage = ({}) => {
   const headerRef = useRef(null)
   const stampRef = useRef(null)
 
@@ -95,14 +95,4 @@ const About: NextPage = ({}) => {
   )
 }
 
-export default About
-
-const AutoCarouselItem: FC<{ text: string; className?: string }> = ({
-  text,
-}) => {
-  return (
-    <span className="text-8xl px-16 group-hover:text-very-light-blue">
-      {text}
-    </span>
-  )
-}
+export default Projects

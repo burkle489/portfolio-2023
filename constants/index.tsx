@@ -56,7 +56,7 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
     subtitle: "Fluid",
     date: "Aug 2022 - Present",
     description:
-      "Web Developer Working on Modern Web Apps for Gaming Companies such as Bandai Namco Mobile, Gameloft and Team17",
+      "Web Developer Working on Modern Web Apps for Gaming Companies such as Bandai Namco Mobile, Gameloft and Team17.",
     tech: ["React", "NextJS", "Gatsby", "Netlify", "Vercel", "Tailwind"],
   },
 ]
