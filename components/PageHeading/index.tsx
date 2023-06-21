@@ -33,18 +33,18 @@ export const PageHeading: FC<IPageHeadingProps> = ({
         { y: 0, delay: 0.075, duration: 1.5, ease: "exponential" },
         "-=1.35"
       )
-    }, timeline.current)
+    }, timeline)
     return () => ctx.revert()
   }, [])
 
   return (
-    <section className="relative border-main-blue bg-very-light-blue flex flex-col justify-center items-center py-10 xl:py-32 pt-52">
+    <section className="relative border-main-blue bg-very-light-blue flex flex-col justify-center items-center py-10 xl:py-32 !pt-52">
       <div className="relative w-full h-full flex justify-start">
         <div className="w-full flex flex-col justify-start overflow-hidden">
           <div className="overflow-hidden">
             <Title
               variant="h1"
-              className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] !font-thin relative mb-8 text-main-blue pl-8"
+              className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] !font-thin relative mb-8 text-main-blue pl-12"
               timeline={timeline}
             >
               {title}
@@ -55,7 +55,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
                 {/* <div className="w-0.5 h-8 bg-[#000] absolute left-3 top-1" /> */}
                 {/* <div className="w-1 h-20 bg-[#999] absolute left-5 top-1" /> */}
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-8 xl:pl-20 text-main-blue"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-main-blue"
                   ref={descriptionRef}
                 >
                   {description}
@@ -67,7 +67,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
                 {/* <div className="w-0.5 h-8 bg-[#000] absolute left-3 top-1" /> */}
                 {/* <div className="w-1 h-20 bg-[#999] absolute left-5 top-1" /> */}
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-8 xl:pl-20 text-main-blue"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-main-blue"
                   ref={descriptionRef}
                 >
                   {secondDescription}

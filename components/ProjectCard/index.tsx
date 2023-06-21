@@ -7,6 +7,7 @@ import Image from "next/image"
 import SocialLink from "../SocialLink"
 import { SOCIALS } from "../../constants"
 import gsap from "gsap"
+import { HoverWrapper } from "../HoverWrapper"
 
 interface IProjectCardProps extends IProjectCard {
   className: string
@@ -49,7 +50,7 @@ export const ProjectCard: FC<IProjectCardProps> = ({
           clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 100% 0%, 0% 0%)",
           ease: "none",
         })
-    }, timeline.current)
+    }, timeline)
     return () => ctx.revert()
   }, [])
 
@@ -108,14 +109,18 @@ export const ProjectCard: FC<IProjectCardProps> = ({
             <a
               href={github}
               className="uppercase underline underline-offset-4 font-bold mb-2"
+              target="_blank"
+              referrerPolicy="no-referrer"
             >
-              github
+              <HoverWrapper>github</HoverWrapper>
             </a>
             <a
               href={hostedLink}
               className="uppercase underline underline-offset-4 font-bold mb-2"
+              target="_blank"
+              referrerPolicy="no-referrer"
             >
-              live link
+              <HoverWrapper>live link</HoverWrapper>
             </a>
           </div>
           <div className="flex flex-col justify-start items-end">

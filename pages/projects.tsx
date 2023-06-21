@@ -13,6 +13,9 @@ import Image from "next/image"
 import stamp from "../public/stamp.png"
 import cx from "classnames"
 import { ProjectCard } from "../components/ProjectCard"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+
+if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
 const Projects: NextPage = ({}) => {
@@ -28,7 +31,7 @@ const Projects: NextPage = ({}) => {
     if (!headerRef || !headerRef.current) return
     const ctx = gsap.context(() => {
       gsap.fromTo(headerRef.current, { y: -3000 }, { y: 0, duration: 1 })
-    }, headerRef.current)
+    }, headerRef)
     return () => ctx.revert()
   }, [])
 
@@ -42,19 +45,19 @@ const Projects: NextPage = ({}) => {
           { rotation: 0, y: -3000 },
           { rotation: 360, y: 0, duration: 1 }
         )
-      // gsap.to(stampRef.current, {
-      //   scrollTrigger: {
-      //     trigger: "html",
-      //     pin: true,
-      //     scrub: 0.2,
-      //     start: "top top",
-      //     end: "+=10000",
-      //   },
-      //   rotation: 360 * 5,
-      //   duration: 1,
-      //   ease: "none",
-      // })
-    }, stampRef.current)
+      gsap.to(stampRef.current, {
+        scrollTrigger: {
+          trigger: "html",
+          pin: true,
+          scrub: 0.2,
+          start: "top top",
+          end: "+=10000",
+        },
+        rotation: 360 * 5,
+        duration: 1,
+        ease: "none",
+      })
+    }, stampRef)
     return () => ctx.revert()
   }, [])
 
@@ -85,7 +88,7 @@ const Projects: NextPage = ({}) => {
       </div>
 
       <Container>
-        <div className="w-full h-full grid grid-cols-2 mx-auto px-12">
+        <div className="w-full h-full grid grid-cols-2 mx-auto px-20">
           {PROJECT_CARDS.map((project, index) => (
             <ProjectCard {...{ ...project, index }} />
           ))}

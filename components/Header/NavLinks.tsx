@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { FC } from "react";
-import { NAV_LINKS } from "../../constants";
-import cx from "classnames";
+import Link from "next/link"
+import { FC } from "react"
+import { NAV_LINKS } from "../../constants"
+import cx from "classnames"
+import { HoverWrapper } from "../HoverWrapper"
 
 const NavLinks: FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
   return (
@@ -17,13 +18,15 @@ const NavLinks: FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
             "flex md:hidden": isMobile,
           })}
         >
-          <Link href={nLink.value} className="text-lg">
-            {nLink.label}
-          </Link>
+          <HoverWrapper>
+            <Link href={nLink.value} className="text-lg">
+              {nLink.label}
+            </Link>
+          </HoverWrapper>
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default NavLinks;
+export default NavLinks

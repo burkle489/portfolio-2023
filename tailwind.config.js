@@ -4,6 +4,7 @@ const { fontFamily } = require("tailwindcss/defaultTheme")
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
+    "./public/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
@@ -17,6 +18,7 @@ module.exports = {
         "light-blue": "#86a0fc",
         "some-light-blue": "#e8eeff",
         "very-light-blue": "#f0f3fc",
+        yellow: "#faf36e",
       },
     },
   },

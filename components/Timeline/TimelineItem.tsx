@@ -49,6 +49,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           { y: 2000 },
           {
             y: 0,
+            duration: 1,
           },
           "first"
         )
@@ -60,7 +61,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
             duration: 2,
             ease: "power4",
           },
-          "second"
+          "=-0.5"
         )
         .fromTo(
           bottomBorder.current,
@@ -71,7 +72,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
             delay: 0.2,
             ease: "power4",
           },
-          "second"
+          "=-2"
         )
         .fromTo(dateHeader.current, { y: 200 }, { y: 0 }, "-=2")
     })
@@ -103,7 +104,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           )}
           <div className=" bg-main-blue h-1 w-full" ref={topBorder} />
         </div>
-        <div className="w-full h-full flex justify-between px-8 mt-8 mb-8">
+        <div className="w-full h-full flex justify-between px-12 mt-8 mb-8">
           <div className="w-full flex items-center justify-center gap-20">
             <div className="w-[40%]">
               <Title variant="h2">{title}</Title>

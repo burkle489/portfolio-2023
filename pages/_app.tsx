@@ -3,6 +3,9 @@ import type { AppProps } from "next/app"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { Space_Grotesk } from "@next/font/google"
+import { MouseCursor } from "../components/MouseCursor"
+import Providers from "../components/Provider"
+
 config.autoAddCss = false
 // pages/_app.js
 
@@ -14,11 +17,14 @@ const spaceGrotesk = Space_Grotesk({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main
-      className={`${spaceGrotesk.variable} font-sans text-main-blue bg-very-light-blue`}
-    >
-      <Component {...pageProps} />
-    </main>
+    <Providers>
+      <main
+        className={`${spaceGrotesk.variable} font-sans text-main-blue bg-very-light-blue relative`}
+      >
+        <MouseCursor />
+        <Component {...pageProps} />
+      </main>
+    </Providers>
   )
 }
 

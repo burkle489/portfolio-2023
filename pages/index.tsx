@@ -9,6 +9,11 @@ import { PageHeading } from "../components/PageHeading"
 import Title from "../components/Title/Title"
 import { ABOUT_TIMELINE, PROJECT_CARDS } from "../constants"
 import stamp from "../public/stamp.png"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+import { Featured } from "../components/Featured"
+import { Stamp } from "../components/Stamp"
+
+if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
 const Home: NextPage = ({}) => {
@@ -32,7 +37,7 @@ const Home: NextPage = ({}) => {
     if (!headerRef || !headerRef.current) return
     const ctx = gsap.context(() => {
       gsap.fromTo(headerRef.current, { y: -3000 }, { y: 0, duration: 1 })
-    }, headerRef.current)
+    }, headerRef)
     return () => ctx.revert()
   }, [])
 
@@ -46,19 +51,19 @@ const Home: NextPage = ({}) => {
           { rotation: 0, y: -3000 },
           { rotation: 360, y: 0, duration: 1 }
         )
-      // gsap.to(stampRef.current, {
-      //   scrollTrigger: {
-      //     trigger: "html",
-      //     pin: true,
-      //     scrub: 0.2,
-      //     start: "top top",
-      //     end: "+=10000",
-      //   },
-      //   rotation: 360 * 5,
-      //   duration: 1,
-      //   ease: "none",
-      // })
-    }, stampRef.current)
+      gsap.to(stampRef.current, {
+        scrollTrigger: {
+          trigger: "html",
+          pin: true,
+          scrub: 0.2,
+          start: "top top",
+          end: "+=10000",
+        },
+        rotation: 360 * 5,
+        duration: 1,
+        ease: "none",
+      })
+    }, stampRef)
     return () => ctx.revert()
   }, [])
 
@@ -71,6 +76,7 @@ const Home: NextPage = ({}) => {
             trigger: scrollTrigger.current,
             start: "top bottom",
           },
+          paused: true,
         })
         .addLabel("first", 0)
         .addLabel("second", 1)
@@ -114,7 +120,7 @@ const Home: NextPage = ({}) => {
           },
           "second"
         )
-    }, carouselTimeline.current)
+    }, carouselTimeline)
     return () => ctx.revert()
   }, [])
 
@@ -129,118 +135,35 @@ const Home: NextPage = ({}) => {
           />
           {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div> */}
         </div>
-        <Container
-          className="!pt-20 mb-20 !h-fit"
-          innerClassName="flex justify-center items-center relative"
-          // innerRef={stampContainer}
-        >
-          <div ref={stampRef} className="relative">
-            <Image alt="stamp" src={stamp} width={200} height={200} />
-            <div className="absolute top-[calc(50%-11px)] left-[calc(50%-12px)] w-[24px] h-[22px]">
-              tb.
-            </div>
-          </div>
-        </Container>
+        <Stamp />
       </div>
       <div ref={scrollTrigger} />
-      <Container
-        innerRef={carouselInner}
-        className="!px-0 !py-0 group  transition-all duration-500"
-      >
-        <div ref={topBorder} className=" bg-main-blue h-1 w-full mb-6" />
-        <div className="flex pl-12" ref={wrapperRef}>
-          <Title variant="h6" className="uppercase font-bold">
-            Featured Project
-          </Title>
-        </div>
-        <div ref={bottomBorder} className=" bg-main-blue h-1 w-full mt-6" />
-        <div className="px-12 py-8 flex justify-between items-center gap-20">
-          <Title variant="h1" className="w-[50%] mb-0 pb-0">
-            {PROJECT_CARDS[0].name}
-          </Title>
-          <div className="w-[50%]">
-            <div className="flex gap-4 mb-4 justify-end">
-              {PROJECT_CARDS[0].tools?.map((tool: string) => (
-                <p className="uppercase font-bold mb-2">{tool}</p>
-              ))}
-            </div>
-            <Title variant="h6" className="text-md text-right">
-              {PROJECT_CARDS[0].description}
-            </Title>
-          </div>
-        </div>
-        <div ref={secondBottomBorder} className=" bg-main-blue h-1 w-full" />
-        <div className="flex justify-end w-full">
-          <div className="w-[200px] py-4 flex justify-center items-center text-right relative">
-            <Link
-              href="/projects"
-              className="uppercase w-full h-full text-center font-bold"
-            >
-              See more
-            </Link>
-            <div className=" bg-main-blue h-1 w-full absolute left-0 bottom-0" />
-            <div className=" bg-main-blue h-full w-1 absolute left-0 top-0" />
-          </div>
-        </div>
-      </Container>
+      <Featured
+        {...{
+          title: "Featured Project",
+          itemName: PROJECT_CARDS[0].name,
+          tools: PROJECT_CARDS[0].tools,
+          description: PROJECT_CARDS[0].description,
+        }}
+      />
       <div
-        className="flex justify-center items-center px-12 py-20"
+        className="flex justify-center items-center px-12 pt-12 pb-20"
         ref={wrapperRef}
       >
         <Title variant="h6" className="text-center font-bold">
           tb.
         </Title>
       </div>
-      <Container
-        innerRef={carouselInner}
-        className="!px-0 !py-0 group  transition-all duration-500 mb-20"
-      >
-        <div ref={topBorder} className=" bg-main-blue h-1 w-full mb-6" />
-        <div className="flex justify-between px-12" ref={wrapperRef}>
-          <Title variant="h6" className="uppercase font-bold">
-            CURRENT ROLE
-          </Title>
-          <Title variant="h6" className="uppercase font-bold">
-            {ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].date}
-          </Title>
-        </div>
-        <div ref={bottomBorder} className=" bg-main-blue h-1 w-full mt-6" />
-        <div className="px-12 py-8 flex justify-between items-center gap-20">
-          <div>
-            <Title variant="h2" className=" mb-0 pb-0">
-              {ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].title}
-            </Title>
-            <Title variant="h4" className=" mb-0 pb-0">
-              {ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].subtitle}
-            </Title>
-          </div>
-          <div className="w-[50%]">
-            <div className="flex gap-4 mb-4 justify-end">
-              {ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].tech?.map(
-                (tool: string) => (
-                  <p className="uppercase font-bold mb-2">{tool}</p>
-                )
-              )}
-            </div>
-            <Title variant="h6" className="text-md text-right">
-              {ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].description}
-            </Title>
-          </div>
-        </div>
-        <div ref={secondBottomBorder} className=" bg-main-blue h-1 w-full" />
-        <div className="flex justify-end w-full">
-          <div className="w-[200px] py-4 flex justify-center items-center text-right relative">
-            <Link
-              href="/about"
-              className="uppercase w-full h-full text-center font-bold"
-            >
-              See more
-            </Link>
-            <div className=" bg-main-blue h-1 w-full absolute left-0 bottom-0" />
-            <div className=" bg-main-blue h-full w-1 absolute left-0 top-0" />
-          </div>
-        </div>
-      </Container>
+      <Featured
+        {...{
+          title: "Current Role",
+          titleTag: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].date,
+          itemName: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].title,
+          itemNameSubTitle: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].subtitle,
+          tools: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].tech,
+          description: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].description,
+        }}
+      />
     </div>
   )
 }
