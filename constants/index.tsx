@@ -1,5 +1,5 @@
 import { ITimelineItem } from "../components/Timeline/TimelineItem"
-import { IProjectCard } from "../pages/projects"
+
 import pokeball from "../public/pokeball.svg"
 import pokedexScreenshot from "../public/pokedex-screenshot.png"
 import pokedexScreenshot2 from "../public/pokedex-red.png"
@@ -61,7 +61,7 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
   },
 ]
 
-export const PROJECT_CARDS: IProjectCard[] = [
+export const PROJECT_CARDS: any[] = [
   {
     name: "Pokedex App",
     logo: pokeball,

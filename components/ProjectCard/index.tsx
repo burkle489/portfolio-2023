@@ -1,5 +1,4 @@
 import { FC, useEffect, useRef, useState } from "react"
-import { IProjectCard } from "../../pages/projects"
 import Header from "../Header"
 import Title from "../Title/Title"
 import cx from "classnames"
@@ -9,11 +8,11 @@ import { SOCIALS } from "../../constants"
 import gsap from "gsap"
 import { HoverWrapper } from "../HoverWrapper"
 
-interface IProjectCardProps extends IProjectCard {
+interface IProjectCardProps {
   className: string
 }
 
-export const ProjectCard: FC<IProjectCardProps> = ({
+export const ProjectCard: FC<any> = ({
   className,
   name,
   logo,
