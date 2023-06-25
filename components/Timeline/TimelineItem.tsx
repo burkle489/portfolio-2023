@@ -104,13 +104,15 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           )}
           <div className=" bg-main-blue h-1 w-full" ref={topBorder} />
         </div>
-        <div className="w-full h-full flex justify-between px-12 mt-8 mb-8">
-          <div className="w-full flex items-center justify-center gap-20">
-            <div className="w-[40%]">
+        <div className="w-full h-full flex justify-between px-8 lg:px-12 mt-8 mb-8">
+          <div className="w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
+            <div className="w-full md:w-[40%]">
               <Title variant="h2">{title}</Title>
-              <Title variant="h3">{subtitle}</Title>
+              <Title variant="h3" className="!mb-0">
+                {subtitle}
+              </Title>
             </div>
-            <div className="w-[60%] flex flex-col gap-8">
+            <div className="w-full md:w-[60%] flex flex-col">
               <Title variant="h5">{description}</Title>
               <div className="flex justify-end">
                 {tech?.map((t) => (

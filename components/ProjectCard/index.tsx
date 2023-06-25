@@ -64,8 +64,8 @@ export const ProjectCard: FC<any> = ({
   return (
     <div
       className={cx(
-        "col-span-1 relative odd:mr-[-0.125rem] even:ml-[-0.125rem]",
-        { "mt-[-0.25rem]": index > 1 }
+        "col-span-1 relative odd:mb-[-0.125rem] even:mt-[-0.125rem] lg:odd:mb-0 lg:even:mt-0 lg:odd:mr-[-0.125rem] lg:even:ml-[-0.125rem]",
+        { "!mt-[-0.25rem]": index > 1 }
       )}
       onMouseEnter={() => {
         setMouseEnter(true)
@@ -80,31 +80,31 @@ export const ProjectCard: FC<any> = ({
             src={screenshot}
             alt={screenshotAlt}
             fill
-            objectFit="cover"
             style={{
               objectPosition: bgPosition,
               zIndex: 0,
               opacity: 0.1,
               clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%)",
+              objectFit: "cover",
             }}
             ref={bgRef}
           />
         </>
       )}
-      <div className="flex gap-32 m-12 z-20 relative">
-        <div className="w-[80%]">
+      <div className="flex flex-col gap-8 p-8 md:p-12 z-20 relative">
+        <div className="w-full xl:w-[80%]">
           <Title variant="h2" className="">
             {name}
           </Title>
-          <div className="flex gap-4 mb-20">
+          <div className="flex flex-wrap gap-4 mb-12">
             {tools?.map((tool: string) => (
-              <p className="uppercase font-bold mb-2">{tool}</p>
+              <p className="uppercase font-bold">{tool}</p>
             ))}
           </div>
           <Title variant="h6">{description}</Title>
         </div>
-        <div className="w-[20%] flex flex-col justify-between items-end">
-          <div className="flex flex-col items-end">
+        <div className="w-full flex flex-col xs:flex-row justify-between items-between gap-2 md:gap-0 xs:items-end">
+          <div className="flex flex-row gap-4 items-end">
             <a
               href={github}
               className="uppercase underline underline-offset-4 font-bold mb-2"
@@ -115,7 +115,7 @@ export const ProjectCard: FC<any> = ({
             </a>
             <a
               href={hostedLink}
-              className="uppercase underline underline-offset-4 font-bold mb-2"
+              className="uppercase underline underline-offset-4 font-bold mb-2 whitespace-nowrap"
               target="_blank"
               referrerPolicy="no-referrer"
             >

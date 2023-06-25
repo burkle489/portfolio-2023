@@ -36,7 +36,7 @@ export const MouseCursor = () => {
   }, [isHovering])
   return (
     <div
-      className="fixed w-14 h-14 z-[9999] flex justify-center items-center mix-blend-exclusion pointer-events-none"
+      className="hidden lg:flex fixed w-14 h-14 z-[9999] justify-center items-center mix-blend-exclusion pointer-events-none"
       style={{
         top: `${(mouse.y as unknown as number) - 28}px`,
         left: `${(mouse.x as unknown as number) - 28}px`,

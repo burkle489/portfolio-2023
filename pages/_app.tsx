@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { Space_Grotesk } from "@next/font/google"
 import { MouseCursor } from "../components/MouseCursor"
 import Providers from "../components/Provider"
+import Header from "../components/Header"
 
 config.autoAddCss = false
 // pages/_app.js
@@ -21,6 +22,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <main
         className={`${spaceGrotesk.variable} font-sans text-main-blue bg-very-light-blue relative`}
       >
+        <Header />
+
         <MouseCursor />
         <Component {...pageProps} />
       </main>

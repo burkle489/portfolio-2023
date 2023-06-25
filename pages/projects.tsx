@@ -14,11 +14,19 @@ import stamp from "../public/stamp.png"
 import cx from "classnames"
 import { ProjectCard } from "../components/ProjectCard"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+import { AppDispatch } from "../store"
+import { setMouseHover } from "../store/mouseHoverSlice"
+import { useDispatch } from "react-redux"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
+const useAppDispatch: () => AppDispatch = useDispatch
 
 const Projects: NextPage = ({}) => {
+  //reset mouse hover state on page change/load
+  const dispatch = useAppDispatch()
+  dispatch(setMouseHover(false))
+
   const headerRef = useRef(null)
   const stampRef = useRef(null)
 
@@ -63,8 +71,7 @@ const Projects: NextPage = ({}) => {
 
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
-      <Header />
-      <div className="h-screen w-full">
+      <div className="min-h-screen w-full">
         <div className="relative" ref={headerRef}>
           <PageHeading
             title="Projects"
@@ -88,7 +95,7 @@ const Projects: NextPage = ({}) => {
       </div>
 
       <Container>
-        <div className="w-full h-full grid grid-cols-2 mx-auto px-20">
+        <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 mx-auto px-4 xs:px-8 md:px-20">
           {PROJECT_CARDS.map((project, index) => (
             <ProjectCard {...{ ...project, index }} />
           ))}

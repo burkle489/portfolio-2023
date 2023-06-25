@@ -62,13 +62,16 @@ export const MarqueeBanner: FC<{ children: ReactNode }> = ({ children }) => {
       innerRef={marqueeInner}
       className="!px-0 !py-0 group hover:bg-main-blue transition-all duration-500"
     >
-      <div ref={marqueeTopBorder} className=" bg-main-blue h-1 w-full mb-20" />
+      <div
+        ref={marqueeTopBorder}
+        className=" bg-main-blue h-1 w-full mb-8 md:mb-12 lg:mb-20"
+      />
       <Marquee pauseOnHover className="flex">
         {children}
       </Marquee>
       <div
         ref={marqueeBottomBorder}
-        className=" bg-main-blue h-1 w-full mt-20"
+        className=" bg-main-blue h-1 w-full mt-8 md:mt-12 lg:mt-20"
       />
     </Container>
   )

@@ -38,7 +38,7 @@ export const Stamp: FC = () => {
 
   return (
     <Container
-      className="!pt-20 mb-20 !h-fit"
+      className="!pt-0 md:!pt-20 mb-20 !h-fit"
       innerClassName="flex justify-center items-center relative"
     >
       <div ref={stampRef} className="relative">

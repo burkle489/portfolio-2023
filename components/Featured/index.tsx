@@ -91,30 +91,33 @@ export const Featured: FC<{
   return (
     <Container
       innerRef={carouselInner}
-      className="!px-0 !py-0 group  transition-all duration-500"
+      className="!px-0 !py-0 group transition-all duration-500"
     >
       <div ref={topBorder} className=" bg-main-blue h-1 w-full mb-6" />
-      <div className="flex px-12 justify-between" ref={wrapperRef}>
-        <Title variant="h6" className="uppercase font-bold">
+      <div
+        className="flex flex-col sm:flex-row px-8 lg:px-12 justify-between"
+        ref={wrapperRef}
+      >
+        <Title variant="h6" className="uppercase font-bold !mb-0 !text-xl">
           {title}
         </Title>
 
-        <Title variant="h6" className="uppercase font-bold">
+        <Title variant="h6" className="uppercase font-bold !mb-0 !text-xl">
           {titleTag}
         </Title>
       </div>
       <div ref={bottomBorder} className=" bg-main-blue h-1 w-full mt-6" />
 
-      <div className="px-12 py-8 flex justify-between items-center gap-20">
-        <Title variant="h1" className="w-[50%] mb-0 pb-0">
+      <div className="px-8 lg:px-12 py-6 lg:py-8 flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-20">
+        <Title variant="h2" className="w-full lg:w-1/2 !mb-0 !pb-0">
           {itemName}
         </Title>
 
-        <div className="w-[50%] h-full">
+        <div className="w-full lg:w-1/2 h-full">
           <Title variant="h3" className="text-right !mb-4 pb-0">
             {itemNameSubTitle}
           </Title>
-          <div className="flex gap-4 mb-2 justify-end">
+          <div className="flex gap-4 mb-2 justify-end flex-wrap">
             {tools?.map((tool: string) => (
               <p className="uppercase font-bold mb-0">{tool}</p>
             ))}

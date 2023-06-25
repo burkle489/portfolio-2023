@@ -12,15 +12,22 @@ import stamp from "../public/stamp.png"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 import { Featured } from "../components/Featured"
 import { Stamp } from "../components/Stamp"
+import { AppDispatch } from "../store"
+import { setMouseHover } from "../store/mouseHoverSlice"
+import { useDispatch } from "react-redux"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
+const useAppDispatch: () => AppDispatch = useDispatch
 
 const Home: NextPage = ({}) => {
+  //reset mouse hover state on page change/load
+  const dispatch = useAppDispatch()
+  dispatch(setMouseHover(false))
+
   const headerRef = useRef(null)
   const stampRef = useRef(null)
   const carouselTimeline = useRef(gsap.timeline())
-
   const carouselInner = useRef(null)
   const scrollTrigger = useRef(null)
   const topBorder = useRef(null)
@@ -126,8 +133,7 @@ const Home: NextPage = ({}) => {
 
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
-      <Header />
-      <div className="h-screen w-full">
+      <div className="min-h-screen w-full">
         <div className="relative" ref={headerRef}>
           <PageHeading
             title="Tayler Burke"
@@ -147,12 +153,12 @@ const Home: NextPage = ({}) => {
         }}
       />
       <div
-        className="flex justify-center items-center px-12 pt-12 pb-20"
+        className="flex justify-center items-center px-12 pt-12 pb-12 md:pb-20"
         ref={wrapperRef}
       >
-        <Title variant="h6" className="text-center font-bold">
+        {/* <Title variant="h6" className="text-center font-bold">
           tb.
-        </Title>
+        </Title> */}
       </div>
       <Featured
         {...{

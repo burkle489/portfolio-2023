@@ -10,11 +10,18 @@ import { PageHeading } from "../components/PageHeading"
 import { Stamp } from "../components/Stamp"
 import Timeline from "../components/Timeline"
 import { ABOUT_TIMELINE } from "../constants"
+import { AppDispatch } from "../store"
+import { setMouseHover } from "../store/mouseHoverSlice"
+import { useDispatch } from "react-redux"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
+const useAppDispatch: () => AppDispatch = useDispatch
 
 const About: NextPage = ({}) => {
+  //reset mouse hover state on page change/load
+  const dispatch = useAppDispatch()
+  dispatch(setMouseHover(false))
   const headerRef = useRef(null)
 
   useEffect(() => {
@@ -32,8 +39,7 @@ const About: NextPage = ({}) => {
 
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
-      <Header />
-      <div className="h-screen w-full">
+      <div className="min-h-screen w-full">
         <div className="relative" ref={headerRef}>
           <PageHeading
             title="About Me"
