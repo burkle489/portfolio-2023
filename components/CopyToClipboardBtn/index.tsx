@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import cx from "classnames";
+import React, { FC } from "react"
+import cx from "classnames"
 
 export const CopyToClipboardBtn: FC<{ content?: any; className: string }> = ({
   content,
@@ -11,7 +11,7 @@ export const CopyToClipboardBtn: FC<{ content?: any; className: string }> = ({
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="flex h-8 w-8  active:translate-y-1 hover:cursor-pointer text-blue-500"
+        className="flex h-8 w-8  active:translate-y-1 hover:cursor-pointer lg:cursor-none text-blue-500"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -25,5 +25,5 @@ export const CopyToClipboardBtn: FC<{ content?: any; className: string }> = ({
         />
       </svg>
     </span>
-  );
-};
+  )
+}

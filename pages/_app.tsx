@@ -2,7 +2,6 @@ import "../styles/globals.scss"
 import type { AppProps } from "next/app"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
-import { Space_Grotesk } from "@next/font/google"
 import { MouseCursor } from "../components/MouseCursor"
 import Providers from "../components/Provider"
 import Header from "../components/Header"
@@ -10,17 +9,11 @@ import Header from "../components/Header"
 config.autoAddCss = false
 // pages/_app.js
 
-// If loading a variable font, you don't need to specify the font weight
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-})
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Providers>
       <main
-        className={`${spaceGrotesk.variable} font-sans text-main-blue bg-very-light-blue relative`}
+        className={`font-sans text-main-blue bg-very-light-blue relative lg:!cursor-none`}
       >
         <Header />
 

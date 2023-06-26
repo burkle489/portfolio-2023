@@ -36,7 +36,7 @@ const SocialLink: FC<ISocialLinkProps> = ({ social }) => {
   return (
     <div
       className={cx(
-        "cursor-pointer border-2 h-16 w-16 border-black flex justify-center items-center bg-white rounded-sm transition-all duration-300",
+        "cursor-pointer lg:cursor-none border-2 h-16 w-16 border-black flex justify-center items-center bg-white rounded-sm transition-all duration-300",
         getSocialColour()
       )}
     >

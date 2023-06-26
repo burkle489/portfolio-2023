@@ -42,6 +42,7 @@ const About: NextPage = ({}) => {
       <div className="min-h-screen w-full">
         <div className="relative" ref={headerRef}>
           <PageHeading
+            titleTag="03"
             title="About Me"
             description=" Front-End Web Developer with 4+ years commercial experience
           specialising in React and React-based frameworks."

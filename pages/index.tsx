@@ -136,6 +136,7 @@ const Home: NextPage = ({}) => {
       <div className="min-h-screen w-full">
         <div className="relative" ref={headerRef}>
           <PageHeading
+            titleTag="01"
             title="Tayler Burke"
             description="Front-End Web Developer with 4+ years industry experience, specialising in React and React-based Frameworks"
           />
@@ -144,32 +145,28 @@ const Home: NextPage = ({}) => {
         <Stamp />
       </div>
       <div ref={scrollTrigger} />
-      <Featured
-        {...{
-          title: "Featured Project",
-          itemName: PROJECT_CARDS[0].name,
-          tools: PROJECT_CARDS[0].tools,
-          description: PROJECT_CARDS[0].description,
-        }}
-      />
-      <div
-        className="flex justify-center items-center px-12 pt-12 pb-12 md:pb-20"
-        ref={wrapperRef}
-      >
-        {/* <Title variant="h6" className="text-center font-bold">
-          tb.
-        </Title> */}
+      <div className="flex flex-col gap-40 pb-20">
+        <Featured
+          {...{
+            title: "Featured Project",
+            itemName: PROJECT_CARDS[0].name,
+            tools: PROJECT_CARDS[0].tools,
+            description: PROJECT_CARDS[0].description,
+          }}
+        />
+
+        <Featured
+          {...{
+            title: "Current Role",
+            titleTag: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].date,
+            itemName: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].title,
+            itemNameSubTitle:
+              ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].subtitle,
+            tools: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].tech,
+            description: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].description,
+          }}
+        />
       </div>
-      <Featured
-        {...{
-          title: "Current Role",
-          titleTag: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].date,
-          itemName: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].title,
-          itemNameSubTitle: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].subtitle,
-          tools: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].tech,
-          description: ABOUT_TIMELINE[ABOUT_TIMELINE.length - 1].description,
-        }}
-      />
     </div>
   )
 }

@@ -4,6 +4,7 @@ import gsap from "gsap"
 interface ITitleProps {
   variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   children: React.ReactNode
+  tag?: string
   className?: string
   bgShape?: "blue" | "orange" | "yellow" | "red"
   timeline?: MutableRefObject<gsap.core.Timeline>
@@ -15,6 +16,7 @@ const Title: FC<ITitleProps> = ({
   bgShape = undefined,
   children,
   timeline,
+  tag,
 }) => {
   const ref = useRef(null)
   useEffect(() => {
@@ -37,6 +39,9 @@ const Title: FC<ITitleProps> = ({
           className={cx(`text-6xl md:text-7xl lg:text-8xl mb-4`, className)}
         >
           {children}
+          {tag && (
+            <span className="mr-1 !text-lg h-full !font-semibold">{tag}</span>
+          )}
         </h1>
       )
     case "h2":

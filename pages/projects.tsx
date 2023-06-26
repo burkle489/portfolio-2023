@@ -74,6 +74,7 @@ const Projects: NextPage = ({}) => {
       <div className="min-h-screen w-full">
         <div className="relative" ref={headerRef}>
           <PageHeading
+            titleTag="02"
             title="Projects"
             description="I have worked on a variety of projects in my professional roles."
             secondDescription="Industries include Gaming, Financial Services, Psychometric Testing, Farming Tech and even Nandos!"

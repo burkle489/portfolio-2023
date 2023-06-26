@@ -83,7 +83,7 @@ export const ProjectCard: FC<any> = ({
             style={{
               objectPosition: bgPosition,
               zIndex: 0,
-              opacity: 0.1,
+              opacity: 0.15,
               clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%)",
               objectFit: "cover",
             }}
@@ -91,7 +91,7 @@ export const ProjectCard: FC<any> = ({
           />
         </>
       )}
-      <div className="flex flex-col gap-8 p-8 md:p-12 z-20 relative">
+      <div className="flex flex-col justify-between gap-8 p-8 md:p-12 z-20 relative h-full">
         <div className="w-full xl:w-[80%]">
           <Title variant="h2" className="">
             {name}
@@ -105,25 +105,27 @@ export const ProjectCard: FC<any> = ({
         </div>
         <div className="w-full flex flex-col xs:flex-row justify-between items-between gap-2 md:gap-0 xs:items-end">
           <div className="flex flex-row gap-4 items-end">
-            <a
-              href={github}
-              className="uppercase underline underline-offset-4 font-bold mb-2"
-              target="_blank"
-              referrerPolicy="no-referrer"
-            >
-              <HoverWrapper>github</HoverWrapper>
-            </a>
+            {github && (
+              <a
+                href={github}
+                className="uppercase underline underline-offset-4 font-bold  lg:cursor-none"
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                <HoverWrapper>github</HoverWrapper>
+              </a>
+            )}
             <a
               href={hostedLink}
-              className="uppercase underline underline-offset-4 font-bold mb-2 whitespace-nowrap"
+              className="uppercase underline underline-offset-4 font-bold whitespace-nowrap lg:cursor-none"
               target="_blank"
               referrerPolicy="no-referrer"
             >
               <HoverWrapper>live link</HoverWrapper>
             </a>
           </div>
-          <div className="flex flex-col justify-start items-end">
-            <Image src={logo} alt={logoAlt} />
+          <div className="flex flex-col justify-start items-end w-32 h-32 rounded-xl overflow-hidden">
+            <Image src={logo} alt={logoAlt} className="w-full h-full" />
           </div>
         </div>
       </div>

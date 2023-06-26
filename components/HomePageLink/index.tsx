@@ -35,7 +35,7 @@ const HomePageLink: FC<IHomePageLinkProps> = ({
           <Link
             href={pageHref}
             className={cx(
-              "h-full w-full flex flex-col justify-center items-center",
+              "h-full w-full flex flex-col justify-center items-center  lg:cursor-none",
               innerClassName
             )}
           >

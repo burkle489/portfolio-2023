@@ -1,11 +1,5 @@
 import { FC } from "react"
 import ClientOnlyPortal from "../ClientOnlyPortal"
-import { Space_Grotesk } from "@next/font/google"
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-})
 
 interface IContactModalProps {
   setClose: () => void
@@ -15,7 +9,7 @@ const ContactModal: FC<IContactModalProps> = ({ setClose }) => {
   return (
     <ClientOnlyPortal selector="#contact-modal">
       <div
-        className={`absolute top-0 left-0 w-screen h-screen flex justify-center items-center ${spaceGrotesk.variable} font-sans`}
+        className={`absolute top-0 left-0 w-screen h-screen flex justify-center items-center font-sans`}
       >
         <div
           className="bg-black opacity-50 absolute top-0 left-0 w-screen h-screen z-10"

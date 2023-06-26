@@ -24,7 +24,7 @@ const Header: FC<IHeaderProps> = ({}) => {
             <FontAwesomeIcon
               icon={faClose}
               size="2xl"
-              className="cursor-pointer"
+              className="cursor-pointer lg:cursor-none"
               onClick={() => {
                 setOpenSidedrawer(false)
               }}
@@ -33,7 +33,7 @@ const Header: FC<IHeaderProps> = ({}) => {
             <FontAwesomeIcon
               icon={faBars}
               size="2xl"
-              className="cursor-pointer"
+              className="cursor-pointer lg:cursor-none"
               onClick={() => {
                 setOpenSidedrawer(true)
               }}

@@ -7,6 +7,7 @@ import { SOCIALS } from "../../constants"
 
 interface IPageHeadingProps {
   title: string
+  titleTag: string
   description?: string
   secondDescription?: string
   hasButtons?: boolean
@@ -14,6 +15,7 @@ interface IPageHeadingProps {
 
 export const PageHeading: FC<IPageHeadingProps> = ({
   title,
+  titleTag,
   description,
   secondDescription,
   hasButtons,
@@ -46,6 +48,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
               variant="h1"
               className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-main-blue pl-12"
               timeline={timeline}
+              tag={titleTag}
             >
               {title}
             </Title>

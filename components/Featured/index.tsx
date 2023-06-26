@@ -133,7 +133,7 @@ export const Featured: FC<{
           <div className="w-[200px] py-4 flex justify-center items-center text-right relative">
             <Link
               href="/projects"
-              className="uppercase w-full h-full text-center font-bold"
+              className="uppercase w-full h-full text-center font-bold lg:cursor-none"
             >
               See more
             </Link>

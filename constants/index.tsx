@@ -4,6 +4,10 @@ import pokeball from "../public/pokeball.svg"
 import pokedexScreenshot from "../public/pokedex-screenshot.png"
 import pokedexScreenshot2 from "../public/pokedex-red.png"
 import pokedexScreenshot3 from "../public/pokedex-blue.png"
+import earthlessIcon from "../public/earthless-icon.png"
+import earthlessScreenshot from "../public/earthless-screenshot.png"
+import evercoreIcon from "../public/evercore-icon.svg"
+import evercoreScreenshot from "../public/evercore-screenshot.png"
 
 export const NAV_LINKS = [
   { label: "Home", value: "/" },
@@ -63,54 +67,55 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
 
 export const PROJECT_CARDS: any[] = [
   {
+    name: "Earthless",
+    logo: earthlessIcon,
+    logoAlt: "earthless icon",
+    screenshot: earthlessScreenshot,
+    bgPosition: "50% 50%",
+    projectType: "professional",
+    description:
+      "Earthless is a sci-fi roguelike deckbuilder. Build still in progress as information about the game releases and development progresses.",
+    tools: [
+      "Typescript",
+      "NextJS",
+      "Vercel",
+      "Redux",
+      "SCSS",
+      "GSAP",
+      "Hubspot",
+    ],
+    github: null,
+    hostedLink: "https://www.earthlessgame.com/",
+    hasCard: true,
+  },
+  {
     name: "Pokedex App",
     logo: pokeball,
     logoAlt: "pokeball",
     screenshot: pokedexScreenshot2,
     bgPosition: "50% 50%",
     projectType: "personal",
+    description:
+      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
+    tools: ["Typescript", "GatsbyJS", "SCSS"],
+    github: "https://github.com/burkle489/pokedex-app",
+    hostedLink: "https://pokedex-app-rho.vercel.app/",
+    hasCard: true,
+  },
 
-    id: "project-card-1",
-    description:
-      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
-    tools: ["Typescript", "GatsbyJS", "SCSS"],
-    github: "https://github.com/burkle489/pokedex-app",
-    hostedLink: "https://pokedex-app-rho.vercel.app/",
-    hasCard: true,
-  },
   {
-    name: "Pokedex App",
-    logo: pokeball,
-    logoAlt: "pokeball",
-    screenshot: pokedexScreenshot3,
+    name: "Evercore Heroes",
+    logo: evercoreIcon,
+    logoAlt: "evercore",
+    screenshot: evercoreScreenshot,
     bgPosition: "50% 50%",
-    projectType: "personal",
-    screenshotAlt: "screenshot of pokedex app project",
-    id: "project-card-1",
+    projectType: "professional",
+    screenshotAlt: "screenshot of evercore heroes home page",
     description:
-      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
-    tools: ["Typescript", "GatsbyJS", "SCSS"],
-    github: "https://github.com/burkle489/pokedex-app",
-    hostedLink: "https://pokedex-app-rho.vercel.app/",
+      "Evercore Heroes is a Mobile MOBA with a Twist! I built an initial website ready for launch of the closed beta and the site was then handed over and built upon by the client using the base project code built by me.",
+    tools: ["Typescript", "GatsbyJS", "Netlify", "SCSS"],
+    github: null,
+    hostedLink: "https://evercoreheroes.com/",
     hasCard: true,
-  },
-  {
-    name: "Pokedex App",
-    logo: pokeball,
-    logoAlt: "pokeball",
-    screenshot: pokedexScreenshot,
-    bgPosition: "50% 50%",
-    projectType: "personal",
-    id: "project-card-1",
-    description:
-      "This was a 1 day build as a way to learn Gatsby, leveraging the poke api for data. It includes search functionality, mobile responsiveness and a sleek design.",
-    tools: ["Typescript", "GatsbyJS", "SCSS"],
-    github: "https://github.com/burkle489/pokedex-app",
-    hostedLink: "https://pokedex-app-rho.vercel.app/",
-    hasCard: true,
-  },
-  {
-    description: "More projects coming soon.",
-    hasCard: false,
   },
 ]
