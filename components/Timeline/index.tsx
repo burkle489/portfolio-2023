@@ -17,8 +17,10 @@ const Timeline: FC<ITimelineProps> = ({ items }) => {
   return (
     <div className="w-full h-fit flex justify-center items-center">
       <div className="w-full h-full">
-        {items.map((item) => (
-          <TimelineItem {...{ ...item }} />
+        {items.map((item, index) => (
+          <React.Fragment key={`aboutTl-${index}`}>
+            <TimelineItem {...{ ...item }} />
+          </React.Fragment>
         ))}
       </div>
     </div>

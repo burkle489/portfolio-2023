@@ -115,8 +115,13 @@ const TimelineItem: FC<ITimelineItemProps> = ({
             <div className="w-full md:w-[60%] flex flex-col">
               <Title variant="h5">{description}</Title>
               <div className="flex justify-end">
-                {tech?.map((t) => (
-                  <p className="text-xl uppercase font-thin pr-8">{t}</p>
+                {tech?.map((t, index) => (
+                  <p
+                    className="text-xl uppercase font-thin pr-8"
+                    key={`tech-${index}`}
+                  >
+                    {t}
+                  </p>
                 ))}
               </div>
             </div>

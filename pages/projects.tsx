@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { FC, useEffect, useRef } from "react"
+import React, { FC, useEffect, useRef } from "react"
 import Container from "../components/Container"
 import Header from "../components/Header"
 import SocialLink from "../components/SocialLink"
@@ -25,7 +25,7 @@ const useAppDispatch: () => AppDispatch = useDispatch
 const Projects: NextPage = ({}) => {
   //reset mouse hover state on page change/load
   const dispatch = useAppDispatch()
-  dispatch(setMouseHover(false))
+  dispatch(setMouseHover("standard"))
 
   const headerRef = useRef(null)
   const stampRef = useRef(null)
@@ -98,7 +98,9 @@ const Projects: NextPage = ({}) => {
       <Container>
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 mx-auto px-4 xs:px-8 md:px-20">
           {PROJECT_CARDS.map((project, index) => (
-            <ProjectCard {...{ ...project, index }} />
+            <React.Fragment key={`projcard-${index}`}>
+              <ProjectCard {...{ ...project, index }} />
+            </React.Fragment>
           ))}
         </div>
       </Container>

@@ -6,7 +6,7 @@ import Image from "next/image"
 import SocialLink from "../SocialLink"
 import { SOCIALS } from "../../constants"
 import gsap from "gsap"
-import { HoverWrapper } from "../HoverWrapper"
+import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
 
 interface IProjectCardProps {
   className: string
@@ -97,8 +97,10 @@ export const ProjectCard: FC<any> = ({
             {name}
           </Title>
           <div className="flex flex-wrap gap-4 mb-12">
-            {tools?.map((tool: string) => (
-              <p className="uppercase font-bold">{tool}</p>
+            {tools?.map((tool: string, index: number) => (
+              <p className="uppercase font-bold" key={`projtool-${index}`}>
+                {tool}
+              </p>
             ))}
           </div>
           <Title variant="h6">{description}</Title>
@@ -112,7 +114,7 @@ export const ProjectCard: FC<any> = ({
                 target="_blank"
                 referrerPolicy="no-referrer"
               >
-                <HoverWrapper>github</HoverWrapper>
+                <ActiveHoverWrapper>github</ActiveHoverWrapper>
               </a>
             )}
             <a
@@ -121,7 +123,7 @@ export const ProjectCard: FC<any> = ({
               target="_blank"
               referrerPolicy="no-referrer"
             >
-              <HoverWrapper>live link</HoverWrapper>
+              <ActiveHoverWrapper>live link</ActiveHoverWrapper>
             </a>
           </div>
           <div className="flex flex-col justify-start items-end w-32 h-32 rounded-xl overflow-hidden">

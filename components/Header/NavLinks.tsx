@@ -2,7 +2,7 @@ import Link from "next/link"
 import { FC } from "react"
 import { NAV_LINKS } from "../../constants"
 import cx from "classnames"
-import { HoverWrapper } from "../HoverWrapper"
+import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
 
 const NavLinks: FC<{ isMobile?: boolean; closeDrawer?: () => void }> = ({
   isMobile = false,
@@ -24,8 +24,9 @@ const NavLinks: FC<{ isMobile?: boolean; closeDrawer?: () => void }> = ({
             "flex md:hidden py-12 w-full": isMobile,
           })}
           onClick={closeDrawer}
+          key={`navl-${index}`}
         >
-          <HoverWrapper>
+          <ActiveHoverWrapper>
             <Link
               href={nLink.value}
               className={cx("lg:cursor-none text-lg", {
@@ -37,7 +38,7 @@ const NavLinks: FC<{ isMobile?: boolean; closeDrawer?: () => void }> = ({
             {isMobile && (
               <span className="mr-1 font-semibold">{`0${index + 1}`}</span>
             )}
-          </HoverWrapper>
+          </ActiveHoverWrapper>
         </li>
       ))}
     </ul>

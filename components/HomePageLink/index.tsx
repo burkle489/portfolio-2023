@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { FC, SetStateAction } from "react"
 import cx from "classnames"
-import { HoverWrapper } from "../HoverWrapper"
+import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
 
 interface IHomePageLinkProps {
   className: string
@@ -31,7 +31,7 @@ const HomePageLink: FC<IHomePageLinkProps> = ({
       className={cx(``, className)}
     >
       {pageHref ? (
-        <HoverWrapper>
+        <ActiveHoverWrapper>
           <Link
             href={pageHref}
             className={cx(
@@ -45,7 +45,7 @@ const HomePageLink: FC<IHomePageLinkProps> = ({
               <h2 className="text-3xl uppercase">{text}</h2>
             )}
           </Link>
-        </HoverWrapper>
+        </ActiveHoverWrapper>
       ) : (
         <div
           className={cx(

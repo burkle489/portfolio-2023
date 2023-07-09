@@ -2,19 +2,22 @@ import { createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 
 interface IMouseHoverState {
-  isHover: boolean
+  hoverState: "standard" | "active" | "hide"
 }
 
 const initialState: IMouseHoverState = {
-  isHover: false,
+  hoverState: "standard",
 }
 
 const mouseHoverSlice = createSlice({
   name: "mouseHover",
   initialState,
   reducers: {
-    setMouseHover: (state, action: PayloadAction<boolean>) => {
-      state.isHover = action.payload
+    setMouseHover: (
+      state,
+      action: PayloadAction<"standard" | "active" | "hide">
+    ) => {
+      state.hoverState = action.payload
     },
   },
 })
