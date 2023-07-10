@@ -15,11 +15,7 @@ export const Stamp: FC = () => {
     const ctx = gsap.context(() => {
       gsap
         .timeline()
-        .fromTo(
-          stampRef.current,
-          { rotation: 0, y: -3000 },
-          { rotation: 360, y: 0, duration: 1 }
-        )
+        .fromTo(stampRef.current, {}, { duration: 1 })
         .to(stampRef.current, {
           rotation: 360 * 5,
           duration: 1,

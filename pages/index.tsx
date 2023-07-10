@@ -23,7 +23,7 @@ const useAppDispatch: () => AppDispatch = useDispatch
 const Home: NextPage = ({}) => {
   //reset mouse hover state on page change/load
   const dispatch = useAppDispatch()
-  dispatch(setMouseHover(false))
+  dispatch(setMouseHover("standard"))
 
   const headerRef = useRef(null)
   const stampRef = useRef(null)
@@ -134,14 +134,11 @@ const Home: NextPage = ({}) => {
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
       <div className="min-h-screen w-full">
-        <div className="relative" ref={headerRef}>
-          <PageHeading
-            titleTag="01"
-            title="Tayler Burke"
-            description="Front-End Web Developer with 4+ years industry experience, specialising in React and React-based Frameworks"
-          />
-          {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div> */}
-        </div>
+        <PageHeading
+          titleTag="01"
+          title="Tayler Burke"
+          description="Front-End Web Developer with 4+ years industry experience, specialising in React and React-based Frameworks"
+        />
         <Stamp />
       </div>
       <div ref={scrollTrigger} />

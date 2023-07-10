@@ -31,8 +31,8 @@ export const PageHeading: FC<IPageHeadingProps> = ({
     const ctx = gsap.context(() => {
       timeline.current.fromTo(
         descriptionRef.current,
-        { y: 3000 },
-        { y: 0, delay: 0.075, duration: 1.5, ease: "exponential" },
+        {},
+        { delay: 0.075, duration: 1.5, ease: "exponential" },
         "-=1.35"
       )
     }, timeline)

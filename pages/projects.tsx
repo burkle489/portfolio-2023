@@ -17,6 +17,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 import { AppDispatch } from "../store"
 import { setMouseHover } from "../store/mouseHoverSlice"
 import { useDispatch } from "react-redux"
+import { Stamp } from "../components/Stamp"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
@@ -72,27 +73,14 @@ const Projects: NextPage = ({}) => {
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
       <div className="min-h-screen w-full">
-        <div className="relative" ref={headerRef}>
-          <PageHeading
-            titleTag="02"
-            title="Projects"
-            description="I have worked on a variety of projects in my professional roles."
-            secondDescription="Industries include Gaming, Financial Services, Psychometric Testing, Farming Tech and even Nandos!"
-          />
-          {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-transparent to-very-light-blue h-40"></div> */}
-        </div>
-        <Container
-          className="!pt-20 mb-20 !h-fit"
-          innerClassName="flex justify-center items-center relative"
-          // innerRef={stampContainer}
-        >
-          <div ref={stampRef} className="relative">
-            <Image alt="stamp" src={stamp} width={200} height={200} />
-            <div className="absolute top-[calc(50%-11px)] left-[calc(50%-12px)] w-[24px] h-[22px]">
-              tb.
-            </div>
-          </div>
-        </Container>
+        <PageHeading
+          titleTag="02"
+          title="Projects"
+          description="I have worked on a variety of projects in my professional roles."
+          secondDescription="Industries include Gaming, Financial Services, Psychometric Testing, Farming Tech and even Nandos!"
+        />
+
+        <Stamp />
       </div>
 
       <Container>

@@ -21,7 +21,7 @@ const useAppDispatch: () => AppDispatch = useDispatch
 const About: NextPage = ({}) => {
   //reset mouse hover state on page change/load
   const dispatch = useAppDispatch()
-  dispatch(setMouseHover(false))
+  dispatch(setMouseHover("standard"))
   const headerRef = useRef(null)
 
   useEffect(() => {
@@ -40,15 +40,13 @@ const About: NextPage = ({}) => {
   return (
     <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
       <div className="min-h-screen w-full">
-        <div className="relative" ref={headerRef}>
-          <PageHeading
-            titleTag="03"
-            title="About Me"
-            description=" Front-End Web Developer with 4+ years commercial experience
+        <PageHeading
+          titleTag="03"
+          title="About Me"
+          description=" Front-End Web Developer with 4+ years commercial experience
           specialising in React and React-based frameworks."
-            hasButtons
-          />
-        </div>
+          hasButtons
+        />
         <Stamp />
       </div>
       <MarqueeBanner>
