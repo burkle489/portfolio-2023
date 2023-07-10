@@ -3,6 +3,7 @@ import Title from "../Title/Title"
 import cx from "classnames"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+import { HideWrapper } from "../MouseWrappers/HideWrapper"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
@@ -30,25 +31,24 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   const container = useRef(null)
   const topBorder = useRef(null)
   const bottomBorder = useRef(null)
-  const scrollTrigger = useRef(null)
+  const innerFeatured = useRef(null)
+  const hoverTimeline = useRef(gsap.timeline({ paused: true }))
 
   useEffect(() => {
-    // if (!carouselWrapperRef || !carouselWrapperRef.current) return
     const ctx = gsap.context(() => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: scrollTrigger.current,
-            start: "top bottom",
+            trigger: container.current,
+            start: "center bottom",
           },
         })
         .addLabel("first", 0)
         .addLabel("second", 1)
         .fromTo(
           container.current,
-          { y: 2000 },
+          {},
           {
-            y: 0,
             duration: 1,
           },
           "first"
@@ -79,6 +79,21 @@ const TimelineItem: FC<ITimelineItemProps> = ({
     return () => ctx.revert()
   }, [])
 
+  //hover animations
+  useEffect(() => {
+    if (hoverTimeline.current && innerFeatured.current) {
+      const ctx = gsap.context(() => {
+        hoverTimeline.current.to(innerFeatured.current, {
+          backgroundColor: "#1136a6",
+          color: "#f0f3fc",
+          duration: 0.7,
+          ease: "power4",
+        })
+      })
+      return () => ctx.revert()
+    }
+  }, [])
+
   return (
     <>
       <div
@@ -104,32 +119,39 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           )}
           <div className=" bg-main-blue h-1 w-full" ref={topBorder} />
         </div>
-        <div className="w-full h-full flex justify-between px-8 lg:px-12 mt-8 mb-8">
-          <div className="w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
-            <div className="w-full md:w-[40%]">
-              <Title variant="h2">{title}</Title>
-              <Title variant="h3" className="!mb-0">
-                {subtitle}
-              </Title>
-            </div>
-            <div className="w-full md:w-[60%] flex flex-col">
-              <Title variant="h5">{description}</Title>
-              <div className="flex justify-end">
-                {tech?.map((t, index) => (
-                  <p
-                    className="text-xl uppercase font-thin pr-8"
-                    key={`tech-${index}`}
-                  >
-                    {t}
-                  </p>
-                ))}
+        <div
+          onMouseEnter={() => hoverTimeline.current.play()}
+          onMouseLeave={() => hoverTimeline.current.reverse()}
+          ref={innerFeatured}
+          className="w-full h-full flex justify-between px-8 lg:px-12 pt-8 pb-8"
+        >
+          <HideWrapper>
+            <div className="w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
+              <div className="w-full md:w-[40%]">
+                <Title variant="h2">{title}</Title>
+                <Title variant="h3" className="!mb-0">
+                  {subtitle}
+                </Title>
+              </div>
+              <div className="w-full md:w-[60%] flex flex-col">
+                <Title variant="h5">{description}</Title>
+                <div className="flex justify-end">
+                  {tech?.map((t, index) => (
+                    <p
+                      className="text-xl uppercase font-thin pr-8"
+                      key={`tech-${index}`}
+                    >
+                      {t}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </HideWrapper>
         </div>
+
         <div className=" bg-main-blue h-1 w-full mb-4" ref={bottomBorder} />
       </div>
-      <div ref={scrollTrigger} />
     </>
   )
 }

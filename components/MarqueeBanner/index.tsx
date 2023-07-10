@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 import { FC, ReactNode, useEffect, useRef } from "react"
 import Marquee from "react-fast-marquee"
 import Container from "../Container"
+import { HideWrapper } from "../MouseWrappers/HideWrapper"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
@@ -24,14 +25,7 @@ export const MarqueeBanner: FC<{ children: ReactNode }> = ({ children }) => {
         })
         .addLabel("first", 0)
         .addLabel("second", 1)
-        .fromTo(
-          marqueeInner.current,
-          { y: 2000 },
-          {
-            y: 0,
-          },
-          "first"
-        )
+        .fromTo(marqueeInner.current, {}, {}, "first")
         .fromTo(
           marqueeTopBorder.current,
           { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
@@ -62,17 +56,19 @@ export const MarqueeBanner: FC<{ children: ReactNode }> = ({ children }) => {
       innerRef={marqueeInner}
       className="!px-0 !py-0 group hover:bg-main-blue transition-all duration-500"
     >
-      <div
-        ref={marqueeTopBorder}
-        className=" bg-main-blue h-1 w-full mb-8 md:mb-12 lg:mb-20"
-      />
-      <Marquee pauseOnHover className="flex">
-        {children}
-      </Marquee>
-      <div
-        ref={marqueeBottomBorder}
-        className=" bg-main-blue h-1 w-full mt-8 md:mt-12 lg:mt-20"
-      />
+      <HideWrapper>
+        <div
+          ref={marqueeTopBorder}
+          className=" bg-main-blue h-1 w-full mb-8 md:mb-12 lg:mb-20"
+        />
+        <Marquee pauseOnHover className="flex">
+          {children}
+        </Marquee>
+        <div
+          ref={marqueeBottomBorder}
+          className=" bg-main-blue h-1 w-full mt-8 md:mt-12 lg:mt-20"
+        />
+      </HideWrapper>
     </Container>
   )
 }
