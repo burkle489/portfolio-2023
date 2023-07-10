@@ -10,8 +10,6 @@ const useIsMouseWindow = () => {
         ev.clientX >= window.innerWidth ||
         ev.clientY >= window.innerHeight
       ) {
-        console.log("Mouse has left the window.")
-
         setIsMouseWindow(true)
       } else {
         setIsMouseWindow(false)
