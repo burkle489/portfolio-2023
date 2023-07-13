@@ -10,7 +10,6 @@ import { PROJECT_CARDS } from "../../constants"
 import Container from "../Container"
 import Title from "../Title/Title"
 import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
-import { HideWrapper } from "../MouseWrappers/HideWrapper"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
@@ -25,11 +24,12 @@ export const Featured: FC<{
 }> = ({ title, titleTag, itemName, itemNameSubTitle, description, tools }) => {
   const carouselTimeline = useRef(gsap.timeline())
   const carouselInner = useRef(null)
-  const scrollTrigger = useRef(null)
   const topBorder = useRef(null)
   const bottomBorder = useRef(null)
   const innerFeatured = useRef(null)
   const secondBottomBorder = useRef(null)
+  const rightContent = useRef(null)
+
   const wrapperRef = useRef(null)
   const hoverTimeline = useRef(gsap.timeline({ paused: true }))
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Featured: FC<{
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: scrollTrigger.current,
+            trigger: carouselInner.current,
             start: "top bottom",
           },
           paused: true,
@@ -46,10 +46,13 @@ export const Featured: FC<{
         .addLabel("first", 0)
         .addLabel("second", 1)
         .fromTo(
-          carouselInner.current,
-          { y: 2000 },
+          innerFeatured.current,
+          { yPercent: 200 },
           {
-            y: 0,
+            yPercent: 0,
+            delay: 0.5,
+            duration: 1.5,
+            ease: "power3.inOut",
           },
           "first"
         )
@@ -61,7 +64,7 @@ export const Featured: FC<{
             duration: 2,
             ease: "power4",
           },
-          "second"
+          "first"
         )
         .fromTo(
           bottomBorder.current,
@@ -72,7 +75,7 @@ export const Featured: FC<{
             delay: 0.2,
             ease: "power4",
           },
-          "second"
+          "first"
         )
         .fromTo(
           secondBottomBorder.current,
@@ -80,7 +83,18 @@ export const Featured: FC<{
           {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
             duration: 2,
-            delay: 0.2,
+            delay: 0.3,
+            ease: "power4",
+          },
+          "first"
+        )
+        .fromTo(
+          rightContent.current,
+          { clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)" },
+          {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            duration: 2,
+            delay: 1.3,
             ease: "power4",
           },
           "second"
@@ -94,10 +108,11 @@ export const Featured: FC<{
     if (hoverTimeline.current && innerFeatured.current) {
       const ctx = gsap.context(() => {
         hoverTimeline.current.to(innerFeatured.current, {
-          backgroundColor: "#1136a6",
-          color: "#f0f3fc",
+          // backgroundColor: "#EAE3D2",
+          // color: "#f0f3fc",
+          scale: 1.02,
           duration: 0.7,
-          ease: "power4",
+          ease: "power3.inOut",
         })
       })
       return () => ctx.revert()
@@ -105,11 +120,8 @@ export const Featured: FC<{
   }, [])
 
   return (
-    <Container
-      innerRef={carouselInner}
-      className="!px-0 !py-0 group transition-all duration-500"
-    >
-      <div ref={topBorder} className=" bg-main-blue h-1 w-full mb-6" />
+    <Container innerRef={carouselInner} className="!px-0 !py-0 overflow-hidden">
+      <div ref={topBorder} className=" bg-dark-blue h-1 w-full mb-6" />
       <div
         className="flex flex-col sm:flex-row px-8 lg:px-12 justify-between"
         ref={wrapperRef}
@@ -122,25 +134,29 @@ export const Featured: FC<{
           {titleTag}
         </Title>
       </div>
-      <div ref={bottomBorder} className=" bg-main-blue h-1 w-full mt-6" />
-      <HideWrapper>
+      <div ref={bottomBorder} className=" bg-dark-blue h-1 w-full mt-6" />
+      {/* <HideWrapper> */}
+      <div className="overflow-hidden w-full h-full">
         <div
           onMouseEnter={() => hoverTimeline.current.play()}
           onMouseLeave={() => hoverTimeline.current.reverse()}
           ref={innerFeatured}
-          className="px-8 lg:px-12 py-6 lg:py-8 flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-20"
+          className="px-8 lg:px-12 py-6 lg:py-8 flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-20 overflow-hidden"
         >
           <Title variant="h2" className="w-full lg:w-1/2 !mb-0 !pb-0">
             {itemName}
           </Title>
 
-          <div className="w-full lg:w-1/2 h-full">
+          <div ref={rightContent} className="w-full lg:w-1/2 h-full">
             <Title variant="h3" className="text-right !mb-4 pb-0">
               {itemNameSubTitle}
             </Title>
             <div className="flex gap-4 mb-2 justify-end flex-wrap">
               {tools?.map((tool: string, index: number) => (
-                <p className="uppercase font-bold mb-0" key={`tool-${index}`}>
+                <p
+                  className="uppercase font-bold mb-0 text-main-blue"
+                  key={`tool-${index}`}
+                >
                   {tool}
                 </p>
               ))}
@@ -150,20 +166,22 @@ export const Featured: FC<{
             </Title>
           </div>
         </div>
-      </HideWrapper>
+      </div>
 
-      <div ref={secondBottomBorder} className=" bg-main-blue h-1 w-full" />
-      <div className="flex justify-end w-full">
+      {/* </HideWrapper> */}
+
+      <div ref={secondBottomBorder} className=" bg-dark-blue h-1 w-full" />
+      <div className="flex justify-end w-full ">
         <ActiveHoverWrapper>
-          <div className="w-[200px] py-4 flex justify-center items-center text-right relative">
+          <div className="w-[200px] group py-4 flex justify-center items-center text-right relative hover:bg-dark-blue duration-500 transition-all hover:text-light-beige">
             <Link
               href="/projects"
               className="uppercase w-full h-full text-center font-bold lg:cursor-none"
             >
               See more
             </Link>
-            <div className=" bg-main-blue h-1 w-full absolute left-0 bottom-0" />
-            <div className=" bg-main-blue h-full w-1 absolute left-0 top-0" />
+            <div className=" bg-dark-blue h-1 w-full absolute left-0 bottom-0 duration-500 transition-all" />
+            <div className=" bg-dark-blue h-full w-1 absolute left-0 top-0 duration-500 transition-all" />
           </div>
         </ActiveHoverWrapper>
       </div>

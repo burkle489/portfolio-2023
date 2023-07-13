@@ -14,11 +14,11 @@ module.exports = {
         sans: ['"Space Grotesk"', "cursive"],
       },
       colors: {
-        "main-blue": "#1136a6",
-        "light-blue": "#86a0fc",
-        "some-light-blue": "#e8eeff",
-        "very-light-blue": "#f0f3fc",
-        yellow: "#faf36e",
+        "dark-blue": "#1C3879",
+        "main-blue": "#2c3377",
+        beige: "#EAE3D2",
+        "light-beige": "#F9F5EB",
+        mouse: "#b8a198",
       },
       screens: {
         "2xs": "360px",

@@ -42,12 +42,13 @@ export const ProjectCard: FC<any> = ({
           {
             clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 0%, 0% 0%)",
             ease: "none",
-            // duration: 0.5,
+            duration: 0.25,
           }
         )
         .to(bgRef.current, {
           clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 100% 0%, 0% 0%)",
           ease: "none",
+          duration: 0.25,
         })
     }, timeline)
     return () => ctx.revert()
@@ -60,7 +61,7 @@ export const ProjectCard: FC<any> = ({
       timeline.current.reverse()
     }
   }, [mouseEnter])
-
+  console.log({ index })
   return (
     <div
       className={cx(
@@ -92,13 +93,16 @@ export const ProjectCard: FC<any> = ({
         </>
       )}
       <div className="flex flex-col justify-between gap-8 p-8 md:p-12 z-20 relative h-full">
-        <div className="w-full xl:w-[80%]">
-          <Title variant="h2" className="">
+        <div className="w-full xl:w-[85%]">
+          <Title variant="h2" className="" tag={`0${index + 1}`}>
             {name}
           </Title>
           <div className="flex flex-wrap gap-4 mb-12">
             {tools?.map((tool: string, index: number) => (
-              <p className="uppercase font-bold" key={`projtool-${index}`}>
+              <p
+                className="uppercase font-bold text-main-blue"
+                key={`projtool-${index}`}
+              >
                 {tool}
               </p>
             ))}
@@ -110,7 +114,7 @@ export const ProjectCard: FC<any> = ({
             {github && (
               <a
                 href={github}
-                className="uppercase underline underline-offset-4 font-bold  lg:cursor-none"
+                className="uppercase underline underline-offset-4 font-bold text-main-blue lg:cursor-none hover:scale-[1.15] transition-all duration-300"
                 target="_blank"
                 referrerPolicy="no-referrer"
               >
@@ -119,7 +123,7 @@ export const ProjectCard: FC<any> = ({
             )}
             <a
               href={hostedLink}
-              className="uppercase underline underline-offset-4 font-bold whitespace-nowrap lg:cursor-none"
+              className="uppercase underline underline-offset-4 font-bold whitespace-nowrap text-main-blue lg:cursor-none hover:scale-[1.15] transition-all duration-300"
               target="_blank"
               referrerPolicy="no-referrer"
             >
@@ -131,10 +135,10 @@ export const ProjectCard: FC<any> = ({
           </div>
         </div>
       </div>
-      <div className="h-full w-1 bg-main-blue absolute top-0 left-0 z-20"></div>
-      <div className="h-full w-1 bg-main-blue absolute top-0 right-0 z-20"></div>
-      <div className="h-1 w-full bg-main-blue absolute bottom-0 left-0 z-20"></div>
-      <div className="h-1 w-full bg-main-blue absolute top-0 left-0 z-20"></div>
+      <div className="h-full w-1 bg-dark-blue absolute top-0 left-0 z-20"></div>
+      <div className="h-full w-1 bg-dark-blue absolute top-0 right-0 z-20"></div>
+      <div className="h-1 w-full bg-dark-blue absolute bottom-0 left-0 z-20"></div>
+      <div className="h-1 w-full bg-dark-blue absolute top-0 left-0 z-20"></div>
     </div>
   )
 }

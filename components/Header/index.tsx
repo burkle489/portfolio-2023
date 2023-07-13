@@ -14,7 +14,7 @@ const Header: FC<IHeaderProps> = ({}) => {
   return (
     <nav>
       <Container
-        className="fixed top-0 left-0 w-[100vw] bg-very-light-blue !p-0 !px-6 h-20 border-b-4 border-main-blue z-40"
+        className="fixed top-0 left-0 w-[100vw] bg-light-beige !p-0 !px-6 h-20 border-b-4 border-dark-blue z-40"
         innerClassName="w-full h-full grid grid-cols-12 items-center"
       >
         <div className="col-span-2 text-left text-4xl font-display">tb.</div>

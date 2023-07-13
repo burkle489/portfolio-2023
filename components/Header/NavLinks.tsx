@@ -11,7 +11,7 @@ const NavLinks: FC<{ isMobile?: boolean; closeDrawer?: () => void }> = ({
   return (
     <ul
       className={cx(
-        "col-span-8 justify-center items-center flex text-main-blue",
+        "col-span-8 justify-center items-center flex text-dark-blue",
         {
           "flex-col": isMobile,
         }

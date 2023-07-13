@@ -21,7 +21,7 @@ export const MouseCursor = () => {
     const ctx = gsap.context(() => {
       activeTimeline.current
         .to(cursor.current, { scale: 0, duration: 0.3 })
-        .to(hoverCursor.current, { scale: 1, duration: 0.3 }, "-=0.3")
+        .to(hoverCursor.current, { scale: 0.8, duration: 0.3 }, "-=0.3")
     })
     return () => ctx.revert()
   }, [])
@@ -59,7 +59,7 @@ export const MouseCursor = () => {
           className={cx(
             "w-12 h-12 rounded-full absolute top-1 left-1 scale-100 transition-colors ",
             {
-              "bg-yellow": hoverState !== "hide",
+              "bg-mouse": hoverState !== "hide",
               "bg-transparent": hoverState === "hide" || outOfWindow,
             }
           )}
@@ -69,7 +69,7 @@ export const MouseCursor = () => {
             className={cx(
               "w-14 h-14 rounded-full abolute left-0 top-0 opacity-30 transition-colors",
               {
-                "bg-yellow": hoverState !== "hide",
+                "bg-mouse": hoverState !== "hide",
                 "bg-transparent": hoverState === "hide" || outOfWindow,
               }
             )}
@@ -78,7 +78,7 @@ export const MouseCursor = () => {
             className={cx(
               "w-8 h-8 rounded-full absolute top-3 left-3 transition-colors",
               {
-                "bg-yellow": hoverState !== "hide",
+                "bg-mouse": hoverState !== "hide",
                 "bg-transparent": hoverState === "hide" || outOfWindow,
               }
             )}

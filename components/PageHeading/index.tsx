@@ -40,23 +40,23 @@ export const PageHeading: FC<IPageHeadingProps> = ({
   }, [])
 
   return (
-    <section className="relative border-main-blue bg-very-light-blue flex flex-col justify-center items-center py-10 xl:py-32 !pt-32 md:!pt-52">
+    <section className="relative border-dark-blue bg-light-beige flex flex-col justify-center items-center py-10 xl:py-32 !pt-32 md:!pt-52">
       <div className="relative w-full h-full flex justify-start">
         <div className="w-full flex flex-col justify-start overflow-hidden">
           <div className="overflow-hidden">
             <Title
               variant="h1"
-              className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-main-blue pl-12"
+              className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-dark-blue pl-12"
               timeline={timeline}
               tag={titleTag}
             >
               {title}
             </Title>
-            <div className="h-1 w-full bg-main-blue" />
+            <div className="h-1 w-full bg-dark-blue" />
             {description && (
               <div className="relative w-4/5 mt-12">
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-main-blue"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue"
                   ref={descriptionRef}
                 >
                   {description}
@@ -66,7 +66,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
             {secondDescription && (
               <div className="relative w-4/5 mt-12">
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-main-blue"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue"
                   ref={descriptionRef}
                 >
                   {secondDescription}

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useLayoutEffect, useRef } from "react"
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react"
 import TimelineItem, { ITimelineItem } from "./TimelineItem"
 import cx from "classnames"
 import gsap from "gsap"
@@ -13,13 +13,16 @@ interface ITimelineProps {
 
 const Timeline: FC<ITimelineProps> = ({ items }) => {
   const circle = useRef(null)
+  const [hovered, setHovered] = useState<number | null>(null)
 
   return (
     <div className="w-full h-fit flex justify-center items-center">
       <div className="w-full h-full">
         {items.map((item, index) => (
           <React.Fragment key={`aboutTl-${index}`}>
-            <TimelineItem {...{ ...item }} />
+            <TimelineItem
+              {...{ ...item, index, currentHovered: hovered, setHovered }}
+            />
           </React.Fragment>
         ))}
       </div>

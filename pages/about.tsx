@@ -38,11 +38,11 @@ const About: NextPage = ({}) => {
   }, [])
 
   return (
-    <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-very-light-blue">
+    <div className="min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-light-beige">
       <div className="min-h-screen w-full">
         <PageHeading
           titleTag="03"
-          title="About Me"
+          title="About"
           description=" Front-End Web Developer with 4+ years commercial experience
           specialising in React and React-based frameworks."
           hasButtons

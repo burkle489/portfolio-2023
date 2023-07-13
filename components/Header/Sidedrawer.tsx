@@ -19,7 +19,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ setClose }) => {
   return (
     <ClientOnlyPortal selector="#sidedrawer">
       <div
-        className={`w-[100vw] absolute top-0 left-0 h-[100vh] bg-very-light-blue flex flex-col font-sans`}
+        className={`w-[100vw] absolute top-0 left-0 h-[100vh] bg-light-beige flex flex-col font-sans`}
       >
         <div className="w-full h-20 flex justify-end items-center px-6">
           <FontAwesomeIcon

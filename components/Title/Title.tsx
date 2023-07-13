@@ -48,6 +48,11 @@ const Title: FC<ITitleProps> = ({
       return (
         <h2 ref={ref} className={cx(`text-5xl md:text-6xl mb-3`, className)}>
           {children}
+          {tag && (
+            <span className="mr-1 !text-[1rem] h-full !font-semibold">
+              {tag}
+            </span>
+          )}
         </h2>
       )
     case "h3":
@@ -57,6 +62,9 @@ const Title: FC<ITitleProps> = ({
           className={cx(`text-2xl md:text-3xl lg:text-4xl mb-2`, className)}
         >
           {children}
+          {tag && (
+            <span className="mr-1 !text-lg h-full !font-semibold">{tag}</span>
+          )}
         </h3>
       )
     case "h4":
@@ -66,6 +74,9 @@ const Title: FC<ITitleProps> = ({
           className={cx(`text-xl md:text-2xl lg:text-3xl mb-2`, className)}
         >
           {children}
+          {tag && (
+            <span className="mr-1 !text-lg h-full !font-semibold">{tag}</span>
+          )}
         </h4>
       )
     case "h5":
@@ -75,12 +86,18 @@ const Title: FC<ITitleProps> = ({
           className={cx(`text-lg md:text-xl lg:text-2xl mb-2`, className)}
         >
           {children}
+          {tag && (
+            <span className="mr-1 !text-lg h-full !font-semibold">{tag}</span>
+          )}
         </h5>
       )
     case "h6":
       return (
         <h6 ref={ref} className={cx(`lg:text-xl mb-1`, className)}>
           {children}
+          {tag && (
+            <span className="mr-1 !text-lg h-full !font-semibold">{tag}</span>
+          )}
         </h6>
       )
     default:

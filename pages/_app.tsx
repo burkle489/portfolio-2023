@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Providers>
       <main
-        className={`font-sans text-main-blue bg-very-light-blue relative lg:!cursor-none`}
+        className={`font-sans text-dark-blue bg-light-beige relative lg:!cursor-none`}
       >
         <Header />
 
