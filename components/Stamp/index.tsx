@@ -9,13 +9,14 @@ if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
 export const Stamp: FC = () => {
   const stampRef = useRef(null)
+  const stampInnerRef = useRef(null)
 
   useEffect(() => {
     if (!stampRef || !stampRef.current) return
     const ctx = gsap.context(() => {
       gsap
         .timeline()
-        .fromTo(stampRef.current, {}, { duration: 1 })
+        .to(stampRef.current, { opacity: 1, duration: 1, delay: 1 })
         .to(stampRef.current, {
           rotation: 360 * 5,
           duration: 1,
@@ -37,8 +38,14 @@ export const Stamp: FC = () => {
       className="!pt-0 md:!pt-20 mb-20 !h-fit"
       innerClassName="flex justify-center items-center relative"
     >
-      <div ref={stampRef} className="relative">
-        <Image alt="stamp" src={stamp} width={200} height={200} />
+      <div ref={stampRef} className="relative opacity-0">
+        <Image
+          alt="stamp"
+          src={stamp}
+          width={200}
+          height={200}
+          ref={stampInnerRef}
+        />
         <div className="absolute top-[calc(50%-11px)] left-[calc(50%-12px)] w-[24px] h-[22px]">
           tb.
         </div>

@@ -24,17 +24,45 @@ export const PageHeading: FC<IPageHeadingProps> = ({
     gsap.timeline().addLabel("first", 0).addLabel("second", 1)
   )
   const descriptionRef = useRef(null)
+  const secondDescriptionRef = useRef(null)
+  const dividerRef = useRef(null)
+  const headingRef = useRef(null)
 
   useEffect(() => {
     if (!timeline.current) return
 
     const ctx = gsap.context(() => {
-      timeline.current.fromTo(
-        descriptionRef.current,
-        {},
-        { delay: 0.075, duration: 1.5, ease: "exponential" },
-        "-=1.35"
+      // timeline.current
+      gsap.fromTo(
+        dividerRef.current,
+        { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+        {
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          duration: 2,
+          delay: 0.2,
+          ease: "power4",
+        }
       )
+      gsap.to(headingRef.current, {
+        y: 0,
+        duration: 1,
+        delay: 0.1,
+        ease: "power4.inOut",
+      })
+      gsap.to(descriptionRef.current, {
+        delay: 0.7,
+        duration: 1.2,
+        y: 0,
+        marginTop: 40,
+        ease: "power4.inOut",
+      })
+      gsap.to(secondDescriptionRef.current, {
+        delay: 1,
+        duration: 1.2,
+        marginTop: 40,
+        y: 0,
+        ease: "power4.inOut",
+      })
     }, timeline)
     return () => ctx.revert()
   }, [])
@@ -44,19 +72,23 @@ export const PageHeading: FC<IPageHeadingProps> = ({
       <div className="relative w-full h-full flex justify-start">
         <div className="w-full flex flex-col justify-start overflow-hidden">
           <div className="overflow-hidden">
-            <Title
-              variant="h1"
-              className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-dark-blue pl-12"
-              timeline={timeline}
-              tag={titleTag}
-            >
-              {title}
-            </Title>
-            <div className="h-1 w-full bg-dark-blue" />
+            <div className="overflow-hidden">
+              <div ref={headingRef} className="translate-y-[120%]">
+                <Title
+                  variant="h1"
+                  className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-dark-blue pl-12"
+                  tag={titleTag}
+                >
+                  {title}
+                </Title>
+              </div>
+            </div>
+            <div className="h-1 w-full bg-dark-blue" ref={dividerRef} />
+
             {description && (
-              <div className="relative w-4/5 mt-12">
+              <div className="relative w-4/5 overflow-hidden">
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue translate-y-[-120%]"
                   ref={descriptionRef}
                 >
                   {description}
@@ -64,10 +96,10 @@ export const PageHeading: FC<IPageHeadingProps> = ({
               </div>
             )}
             {secondDescription && (
-              <div className="relative w-4/5 mt-12">
+              <div className="relative w-4/5 overflow-hidden">
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue"
-                  ref={descriptionRef}
+                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue translate-y-[-120%]"
+                  ref={secondDescriptionRef}
                 >
                   {secondDescription}
                 </h2>

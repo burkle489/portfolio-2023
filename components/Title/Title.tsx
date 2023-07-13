@@ -15,21 +15,9 @@ const Title: FC<ITitleProps> = ({
   className,
   bgShape = undefined,
   children,
-  timeline,
   tag,
 }) => {
   const ref = useRef(null)
-  useEffect(() => {
-    if (!timeline || !timeline.current) return
-    const ctx = gsap.context(() => {
-      timeline.current.fromTo(
-        ref.current,
-        {},
-        { duration: 1.1, ease: "power1", delay: 0.075 }
-      )
-    }, timeline)
-    return () => ctx.revert()
-  }, [timeline?.current])
 
   switch (variant) {
     case "h1":
