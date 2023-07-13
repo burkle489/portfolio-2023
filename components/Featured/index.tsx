@@ -26,6 +26,7 @@ export const Featured: FC<{
   const carouselInner = useRef(null)
   const topBorder = useRef(null)
   const bottomBorder = useRef(null)
+  const seeMoreBtn = useRef(null)
   const innerFeatured = useRef(null)
   const secondBottomBorder = useRef(null)
   const rightContent = useRef(null)
@@ -50,7 +51,7 @@ export const Featured: FC<{
           { yPercent: 200 },
           {
             yPercent: 0,
-            delay: 0.5,
+            // delay: 0.5,
             duration: 1.5,
             ease: "power3.inOut",
           },
@@ -64,7 +65,7 @@ export const Featured: FC<{
             duration: 2,
             ease: "power4",
           },
-          "first"
+          "=-0.5"
         )
         .fromTo(
           bottomBorder.current,
@@ -72,10 +73,9 @@ export const Featured: FC<{
           {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
             duration: 2,
-            delay: 0.2,
             ease: "power4",
           },
-          "first"
+          "=-1.9"
         )
         .fromTo(
           secondBottomBorder.current,
@@ -83,22 +83,12 @@ export const Featured: FC<{
           {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
             duration: 2,
-            delay: 0.3,
             ease: "power4",
           },
-          "first"
+          "=-1.8"
         )
-        .fromTo(
-          rightContent.current,
-          { clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)" },
-          {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            duration: 2,
-            delay: 1.3,
-            ease: "power4",
-          },
-          "second"
-        )
+        .fromTo(wrapperRef.current, { opacity: 0 }, { opacity: 1 }, "=-1.8")
+        .fromTo(seeMoreBtn.current, { y: -100 }, { y: 0 }, "-=1.5")
     }, carouselTimeline)
     return () => ctx.revert()
   }, [])
@@ -171,9 +161,12 @@ export const Featured: FC<{
       {/* </HideWrapper> */}
 
       <div ref={secondBottomBorder} className=" bg-dark-blue h-1 w-full" />
-      <div className="flex justify-end w-full ">
+      <div className="flex justify-end w-full overflow-hidden">
         <ActiveHoverWrapper>
-          <div className="w-[200px] group py-4 flex justify-center items-center text-right relative hover:bg-dark-blue duration-500 transition-all hover:text-light-beige">
+          <div
+            ref={seeMoreBtn}
+            className="w-[200px] group py-4 flex justify-center items-center text-right relative hover:bg-dark-blue duration-500 transition-all hover:text-light-beige"
+          >
             <Link
               href="/projects"
               className="uppercase w-full h-full text-center font-bold lg:cursor-none"

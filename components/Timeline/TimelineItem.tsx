@@ -36,6 +36,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
   const dateHeader = useRef(null)
   const container = useRef(null)
   const topBorder = useRef(null)
+  const rightContent = useRef(null)
   const bottomBorder = useRef(null)
   const innerFeatured = useRef(null)
   const hoverTimeline = useRef(gsap.timeline({ paused: true }))
@@ -52,11 +53,14 @@ const TimelineItem: FC<ITimelineItemProps> = ({
         })
         .addLabel("first", 0)
         .addLabel("second", 1)
+
         .fromTo(
-          container.current,
-          {},
+          innerFeatured.current,
+          { yPercent: 200 },
           {
-            duration: 1,
+            yPercent: 0,
+            duration: 1.5,
+            ease: "power3.inOut",
           },
           "first"
         )
@@ -158,36 +162,42 @@ const TimelineItem: FC<ITimelineItemProps> = ({
           )}
           <div className=" bg-dark-blue h-1 w-full" ref={topBorder} />
         </div>
-        <div
-          onMouseEnter={() => hoverTimeline.current.play()}
-          onMouseLeave={() => hoverTimeline.current.reverse()}
-          ref={innerFeatured}
-          className="w-full h-full flex justify-between px-8 lg:px-12 pt-8 pb-8"
-        >
-          {/* <HideWrapper> */}
-          <div className="w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
-            <div className="w-full md:w-[40%]">
-              <Title variant="h2" tag={`0${index + 1}`}>
-                {title}
-              </Title>
-              <Title variant="h3" className="!mb-0">
-                {subtitle}
-              </Title>
-            </div>
-            <div className="w-full md:w-[60%] flex flex-col">
-              <Title variant="h5">{description}</Title>
-              <div className="flex justify-end">
-                {tech?.map((t, index) => (
-                  <p
-                    className="text-xl uppercase font-bold text-main-blue pr-8"
-                    key={`tech-${index}`}
-                  >
-                    {t}
-                  </p>
-                ))}
+        <div className="overflow-hidden w-full h-full">
+          <div
+            onMouseEnter={() => hoverTimeline.current.play()}
+            onMouseLeave={() => hoverTimeline.current.reverse()}
+            ref={innerFeatured}
+            className="w-full h-full flex justify-between px-8 lg:px-12 pt-8 pb-8"
+          >
+            {/* <HideWrapper> */}
+            <div className="w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32">
+              <div className="w-full md:w-[40%]">
+                <Title variant="h2" tag={`0${index + 1}`}>
+                  {title}
+                </Title>
+                <Title variant="h3" className="!mb-0">
+                  {subtitle}
+                </Title>
+              </div>
+              <div
+                ref={rightContent}
+                className="w-full md:w-[60%] flex flex-col"
+              >
+                <Title variant="h5">{description}</Title>
+                <div className="flex justify-end">
+                  {tech?.map((t, index) => (
+                    <p
+                      className="text-xl uppercase font-bold text-main-blue pr-8"
+                      key={`tech-${index}`}
+                    >
+                      {t}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+
           {/* </HideWrapper> */}
         </div>
 
