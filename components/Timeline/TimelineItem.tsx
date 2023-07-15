@@ -4,6 +4,7 @@ import cx from "classnames"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 import { HideWrapper } from "../MouseWrappers/HideWrapper"
+import { ABOUT_TIMELINE } from "../../constants"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
@@ -139,8 +140,9 @@ const TimelineItem: FC<ITimelineItemProps> = ({
     <>
       <div
         className={cx(
-          " h-full w-full relative flex flex-col justify-center items-center mb-28",
-          className
+          " h-full w-full relative flex flex-col justify-center items-center",
+          className,
+          { "mb-28": index + 1 !== ABOUT_TIMELINE.length }
         )}
         ref={container}
         onMouseEnter={() => setHovered(index)}

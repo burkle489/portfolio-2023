@@ -6,17 +6,28 @@ import { MouseCursor } from "../components/MouseCursor"
 import Providers from "../components/Provider"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import { MutableRefObject, useRef } from "react"
 
 config.autoAddCss = false
 // pages/_app.js
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const scrollRef: MutableRefObject<any> = useRef(null)
+  const handleScroll = () => {
+    if (scrollRef && scrollRef.current) {
+      window.scrollTo({
+        top: scrollRef.current.clientHeight,
+        behavior: "smooth",
+      })
+    }
+  }
   return (
     <Providers>
       <main
-        className={`bg-light-beige font-sans text-dark-blue relative lg:!cursor-none mb-[602px] md:mb-[400px]`}
+        ref={scrollRef}
+        className={`bg-light-beige font-sans text-dark-blue relative lg:!cursor-none mb-[602px] md:mb-[500px]`}
       >
-        <Header />
+        <Header handleScrollToBottom={handleScroll} />
         <MouseCursor />
         <Component {...pageProps} />
         <Footer />

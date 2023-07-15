@@ -3,22 +3,25 @@ import { FC, useEffect, useRef } from "react"
 import ReactTextareaAutosize from "react-textarea-autosize"
 import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
 import gsap from "gsap"
+import { useForm } from "@formspree/react"
 
 const Footer: FC = () => {
   const footerRef = useRef(null)
+  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORM as any)
 
   useEffect(() => {
     if (!footerRef || !footerRef.current) return
     const ctx = gsap.context(() => {
       gsap.timeline().to(footerRef.current, {
         yPercent: 100,
+        opacity: 1,
         // duration: 1,
         scrollTrigger: {
           trigger: "html",
           pin: true,
           scrub: 1.5,
           start: "bottom bottom",
-          end: "+=500",
+          //   end: "+=500",
           invalidateOnRefresh: true,
         },
       })
@@ -29,7 +32,7 @@ const Footer: FC = () => {
   return (
     <div
       ref={footerRef}
-      className="h-[602px] md:h-[400px] z-0 fixed bottom-0 -translate-y-full  py-12 px-6 md:px-12 border-dark-blue border-t-2 w-full bg-main-blue "
+      className="h-[602px] md:h-[500px] z-0 fixed bottom-0 -translate-y-[602px] md:-translate-y-[500px] opacity-0  py-12 px-6 md:px-12 border-dark-blue border-t-2 w-full bg-main-blue "
     >
       <div className="relative w-full h-full">
         <div className="absolute w-full h-full bottom-0 flex items-center gap-12 md:gap-32 flex-col-reverse md:flex-row ">
@@ -47,12 +50,7 @@ const Footer: FC = () => {
 
                 return errors
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2))
-                  setSubmitting(false)
-                }, 400)
-              }}
+              onSubmit={handleSubmit}
             >
               {({
                 values,
@@ -86,6 +84,7 @@ const Footer: FC = () => {
                   <ActiveHoverWrapper>
                     <div className="relative flex flex-col mb-4">
                       <ReactTextareaAutosize
+                        maxRows={8}
                         rows={1}
                         name="message"
                         onChange={handleChange}
@@ -108,6 +107,12 @@ const Footer: FC = () => {
                       Submit
                     </button>
                   </ActiveHoverWrapper>
+                  {state.succeeded && (
+                    <p className="text-light-beige">
+                      Thanks for getting in touch, I will reply as soon as I
+                      can!
+                    </p>
+                  )}
                 </form>
               )}
             </Formik>

@@ -6,10 +6,13 @@ import SideDrawer from "./Sidedrawer"
 import { NAV_LINKS } from "../../constants"
 import NavLinks from "./NavLinks"
 import Container from "../Container"
+import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
 
-interface IHeaderProps {}
+interface IHeaderProps {
+  handleScrollToBottom: () => void
+}
 
-const Header: FC<IHeaderProps> = ({}) => {
+const Header: FC<IHeaderProps> = ({ handleScrollToBottom }) => {
   const [openSidedrawer, setOpenSidedrawer] = useState<boolean>(false)
   return (
     <nav>
@@ -19,26 +22,34 @@ const Header: FC<IHeaderProps> = ({}) => {
       >
         <div className="col-span-2 text-left text-4xl font-display">tb.</div>
         <NavLinks />
-        <div className="col-span-2 flex justify-end md:hidden">
-          {openSidedrawer ? (
-            <FontAwesomeIcon
-              icon={faClose}
-              size="2xl"
-              className="cursor-pointer lg:cursor-none"
-              onClick={() => {
-                setOpenSidedrawer(false)
-              }}
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faBars}
-              size="2xl"
-              className="cursor-pointer lg:cursor-none"
-              onClick={() => {
-                setOpenSidedrawer(true)
-              }}
-            />
-          )}
+        <div className="col-span-2 flex justify-end items-center">
+          <div
+            onClick={handleScrollToBottom}
+            className="mr-8 md:mr-0 font-bold uppercase text-dark-blue h-full"
+          >
+            <ActiveHoverWrapper>Contact</ActiveHoverWrapper>
+          </div>
+          <div className="md:hidden">
+            {openSidedrawer ? (
+              <FontAwesomeIcon
+                icon={faClose}
+                size="2xl"
+                className="cursor-pointer lg:cursor-none"
+                onClick={() => {
+                  setOpenSidedrawer(false)
+                }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faBars}
+                size="2xl"
+                className="cursor-pointer lg:cursor-none"
+                onClick={() => {
+                  setOpenSidedrawer(true)
+                }}
+              />
+            )}
+          </div>
         </div>
         {openSidedrawer && (
           <SideDrawer
