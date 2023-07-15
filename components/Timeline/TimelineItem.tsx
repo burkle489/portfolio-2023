@@ -139,7 +139,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
     <>
       <div
         className={cx(
-          " h-full w-full relative flex flex-col justify-center items-center mb-28 ",
+          " h-full w-full relative flex flex-col justify-center items-center mb-28",
           className
         )}
         ref={container}
@@ -184,7 +184,7 @@ const TimelineItem: FC<ITimelineItemProps> = ({
                 className="w-full md:w-[60%] flex flex-col"
               >
                 <Title variant="h5">{description}</Title>
-                <div className="flex justify-end">
+                <div className="flex justify-end flex-wrap">
                   {tech?.map((t, index) => (
                     <p
                       className="text-xl uppercase font-bold text-main-blue pr-8"

@@ -109,7 +109,7 @@ export const ProjectCard: FC<any> = ({
           </div>
           <Title variant="h6">{description}</Title>
         </div>
-        <div className="w-full flex flex-col xs:flex-row justify-between items-between gap-2 md:gap-0 xs:items-end">
+        <div className="w-full flex flex-col xs:flex-row justify-between items-between gap-4 md:gap-0 xs:items-end">
           <div className="flex flex-row gap-4 items-end">
             {github && (
               <a
@@ -130,8 +130,8 @@ export const ProjectCard: FC<any> = ({
               <ActiveHoverWrapper>live link</ActiveHoverWrapper>
             </a>
           </div>
-          <div className="flex flex-col justify-start items-end w-32 h-32 rounded-xl overflow-hidden">
-            <Image src={logo} alt={logoAlt} className="w-full h-full" />
+          <div className="flex flex-col justify-start items-end w-full h-full rounded-xl overflow-hidden">
+            <Image src={logo} alt={logoAlt} className="w-32 h-32" />
           </div>
         </div>
       </div>

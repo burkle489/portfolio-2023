@@ -73,10 +73,10 @@ export const PageHeading: FC<IPageHeadingProps> = ({
         <div className="w-full flex flex-col justify-start overflow-hidden">
           <div className="overflow-hidden">
             <div className="overflow-hidden">
-              <div ref={headingRef} className="translate-y-[120%]">
+              <div ref={headingRef} className="translate-y-[150%]">
                 <Title
                   variant="h1"
-                  className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-dark-blue pl-12"
+                  className="!text-[5rem] sm:!text-[8rem] xl:!text-[13rem] font-bold relative mb-8 text-dark-blue pl-6 md:pl-12"
                   tag={titleTag}
                 >
                   {title}
@@ -88,7 +88,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
             {description && (
               <div className="relative w-4/5 overflow-hidden">
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue translate-y-[-120%]"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-6 md:pl-12 xl:pl-20 text-dark-blue translate-y-[-120%]"
                   ref={descriptionRef}
                 >
                   {description}
@@ -98,7 +98,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
             {secondDescription && (
               <div className="relative w-4/5 overflow-hidden">
                 <h2
-                  className="text-lg sm:text-3xl xl:text-4xl pl-12 xl:pl-20 text-dark-blue translate-y-[-120%]"
+                  className="text-lg sm:text-3xl xl:text-4xl pl-6 md:pl-12 xl:pl-20 text-dark-blue translate-y-[-120%]"
                   ref={secondDescriptionRef}
                 >
                   {secondDescription}

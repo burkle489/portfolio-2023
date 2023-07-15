@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { MouseCursor } from "../components/MouseCursor"
 import Providers from "../components/Provider"
 import Header from "../components/Header"
+import Footer from "../components/Footer"
 
 config.autoAddCss = false
 // pages/_app.js
@@ -13,12 +14,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Providers>
       <main
-        className={`font-sans text-dark-blue bg-light-beige relative lg:!cursor-none`}
+        className={`bg-light-beige font-sans text-dark-blue relative lg:!cursor-none mb-[602px] md:mb-[400px]`}
       >
         <Header />
-
         <MouseCursor />
         <Component {...pageProps} />
+        <Footer />
       </main>
     </Providers>
   )

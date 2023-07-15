@@ -54,7 +54,7 @@ export const MarqueeBanner: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <Container
       innerRef={marqueeInner}
-      className="!px-0 !py-0 group hover:bg-dark-blue transition-all duration-500"
+      className="!px-0 !py-0 group hover:bg-dark-blue transition-all duration-500 mb-12"
     >
       {/* <HideWrapper> */}
       <div
