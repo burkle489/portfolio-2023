@@ -4,6 +4,9 @@ import ReactTextareaAutosize from "react-textarea-autosize"
 import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
 import gsap from "gsap"
 import { useForm } from "@formspree/react"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+
+if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
 const Footer: FC = () => {
   const footerRef = useRef(null)
@@ -15,13 +18,11 @@ const Footer: FC = () => {
         gsap.timeline().to(footerRef.current, {
           yPercent: 100,
           opacity: 1,
-          // duration: 1,
           scrollTrigger: {
             trigger: "html",
             pin: true,
             scrub: 1.5,
             start: "bottom bottom",
-            //   end: "+=500",
             invalidateOnRefresh: true,
           },
         })
