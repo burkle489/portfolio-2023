@@ -1,18 +1,12 @@
-import { FC } from "react"
 import gsap from "gsap"
-import { NextPage } from "next"
-import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef } from "react"
-import stamp from "../public/stamp.png"
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
-import { PROJECT_CARDS } from "../../constants"
+import { FC, useEffect, useRef } from "react"
 import Container from "../Container"
-import Title from "../Title/Title"
 import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
+import Title from "../Title/Title"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
-const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
 export const Featured: FC<{
   title: string
@@ -29,68 +23,77 @@ export const Featured: FC<{
   const seeMoreBtn = useRef(null)
   const innerFeatured = useRef(null)
   const secondBottomBorder = useRef(null)
-  const rightContent = useRef(null)
-
   const wrapperRef = useRef(null)
   const hoverTimeline = useRef(gsap.timeline({ paused: true }))
+
+  const ifAllRefs =
+    wrapperRef.current &&
+    carouselInner.current &&
+    innerFeatured.current &&
+    topBorder.current &&
+    bottomBorder.current &&
+    secondBottomBorder.current &&
+    seeMoreBtn.current &&
+    carouselTimeline.current
+
   useEffect(() => {
-    if (!wrapperRef || !wrapperRef.current) return
-    const ctx = gsap.context(() => {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: carouselInner.current,
-            start: "top bottom",
-          },
-          paused: true,
-        })
-        .addLabel("first", 0)
-        .addLabel("second", 1)
-        .fromTo(
-          innerFeatured.current,
-          { yPercent: 200 },
-          {
-            yPercent: 0,
-            // delay: 0.5,
-            duration: 1.5,
-            ease: "power3.inOut",
-          },
-          "first"
-        )
-        .fromTo(
-          topBorder.current,
-          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-          {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 2,
-            ease: "power4",
-          },
-          "=-0.5"
-        )
-        .fromTo(
-          bottomBorder.current,
-          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-          {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 2,
-            ease: "power4",
-          },
-          "=-1.9"
-        )
-        .fromTo(
-          secondBottomBorder.current,
-          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-          {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 2,
-            ease: "power4",
-          },
-          "=-1.8"
-        )
-        .fromTo(wrapperRef.current, { opacity: 0 }, { opacity: 1 }, "=-1.8")
-        .fromTo(seeMoreBtn.current, { y: -100 }, { y: 0 }, "-=1.5")
-    }, carouselTimeline)
-    return () => ctx.revert()
+    if (ifAllRefs) {
+      const ctx = gsap.context(() => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: carouselInner.current,
+              start: "top bottom",
+            },
+            paused: true,
+          })
+          .addLabel("first", 0)
+          .addLabel("second", 1)
+          .fromTo(
+            innerFeatured.current,
+            { yPercent: 200 },
+            {
+              yPercent: 0,
+              duration: 1.5,
+              ease: "power3.inOut",
+            },
+            "first"
+          )
+          .fromTo(
+            topBorder.current,
+            { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+            {
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+              duration: 2,
+              ease: "power4",
+            },
+            "=-0.5"
+          )
+          .fromTo(
+            bottomBorder.current,
+            { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+            {
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+              duration: 2,
+              ease: "power4",
+            },
+            "=-1.9"
+          )
+          .fromTo(
+            secondBottomBorder.current,
+            { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+            {
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+              duration: 2,
+              ease: "power4",
+            },
+            "=-1.8"
+          )
+          .fromTo(wrapperRef.current, { opacity: 0 }, { opacity: 1 }, "=-1.8")
+          .fromTo(seeMoreBtn.current, { y: -100 }, { y: 0 }, "-=1.5")
+      }, carouselTimeline)
+      return () => ctx.revert()
+    }
   }, [])
 
   //hover animations
@@ -98,8 +101,6 @@ export const Featured: FC<{
     if (hoverTimeline.current && innerFeatured.current) {
       const ctx = gsap.context(() => {
         hoverTimeline.current.to(innerFeatured.current, {
-          // backgroundColor: "#EAE3D2",
-          // color: "#f0f3fc",
           scale: 1.02,
           duration: 0.7,
           ease: "power3.inOut",
@@ -137,7 +138,7 @@ export const Featured: FC<{
             {itemName}
           </Title>
 
-          <div ref={rightContent} className="w-full lg:w-1/2 h-full">
+          <div className="w-full lg:w-1/2 h-full">
             <Title variant="h3" className="text-right !mb-4 pb-0">
               {itemNameSubTitle}
             </Title>

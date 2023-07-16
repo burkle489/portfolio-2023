@@ -1,6 +1,5 @@
-import React, { FC, MutableRefObject, useLayoutEffect, useRef } from "react"
 import cx from "classnames"
-import gsap from "gsap"
+import React, { FC, MutableRefObject } from "react"
 
 interface IContainerProps {
   children: React.ReactNode

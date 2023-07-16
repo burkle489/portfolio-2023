@@ -1,9 +1,6 @@
-import { FC, useEffect, useLayoutEffect, useRef } from "react"
-import Container from "../Container"
-import Title from "../Title/Title"
 import gsap from "gsap"
-import SocialLink from "../SocialLink"
-import { SOCIALS } from "../../constants"
+import { FC, useEffect, useRef } from "react"
+import Title from "../Title/Title"
 
 interface IPageHeadingProps {
   title: string
@@ -18,7 +15,6 @@ export const PageHeading: FC<IPageHeadingProps> = ({
   titleTag,
   description,
   secondDescription,
-  hasButtons,
 }) => {
   const timeline = useRef(
     gsap.timeline().addLabel("first", 0).addLabel("second", 1)
@@ -29,42 +25,46 @@ export const PageHeading: FC<IPageHeadingProps> = ({
   const headingRef = useRef(null)
 
   useEffect(() => {
-    if (!timeline.current) return
-
-    const ctx = gsap.context(() => {
-      // timeline.current
-      gsap.fromTo(
-        dividerRef.current,
-        { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" },
-        {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          duration: 2,
-          delay: 0.2,
-          ease: "power4",
-        }
-      )
-      gsap.to(headingRef.current, {
-        y: 0,
-        duration: 1,
-        delay: 0.1,
-        ease: "power4.inOut",
-      })
-      gsap.to(descriptionRef.current, {
-        delay: 0.7,
-        duration: 1.2,
-        y: 0,
-        marginTop: 40,
-        ease: "power4.inOut",
-      })
-      gsap.to(secondDescriptionRef.current, {
-        delay: 1,
-        duration: 1.2,
-        marginTop: 40,
-        y: 0,
-        ease: "power4.inOut",
-      })
-    }, timeline)
-    return () => ctx.revert()
+    if (
+      dividerRef.current &&
+      headingRef.current &&
+      descriptionRef.current &&
+      secondDescriptionRef.current
+    ) {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          dividerRef.current,
+          { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" },
+          {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            duration: 2,
+            delay: 0.2,
+            ease: "power4",
+          }
+        )
+        gsap.to(headingRef.current, {
+          y: 0,
+          duration: 1,
+          delay: 0.1,
+          ease: "power4.inOut",
+        })
+        gsap.to(descriptionRef.current, {
+          delay: 0.7,
+          duration: 1.2,
+          y: 0,
+          marginTop: 40,
+          ease: "power4.inOut",
+        })
+        gsap.to(secondDescriptionRef.current, {
+          delay: 1,
+          duration: 1.2,
+          marginTop: 40,
+          y: 0,
+          ease: "power4.inOut",
+        })
+      }, timeline)
+      return () => ctx.revert()
+    }
   }, [])
 
   return (

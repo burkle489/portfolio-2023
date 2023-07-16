@@ -12,25 +12,26 @@ export const Stamp: FC = () => {
   const stampInnerRef = useRef(null)
 
   useEffect(() => {
-    if (!stampRef || !stampRef.current) return
-    const ctx = gsap.context(() => {
-      gsap
-        .timeline()
-        .to(stampRef.current, { opacity: 1, duration: 1, delay: 1 })
-        .to(stampRef.current, {
-          rotation: 360 * 5,
-          duration: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "html",
-            pin: true,
-            scrub: 0.2,
-            start: "top top",
-            end: "+=10000",
-          },
-        })
-    }, stampRef)
-    return () => ctx.revert()
+    if (stampRef.current) {
+      const ctx = gsap.context(() => {
+        gsap
+          .timeline()
+          .to(stampRef.current, { opacity: 1, duration: 1, delay: 1 })
+          .to(stampRef.current, {
+            rotation: 360 * 5,
+            duration: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "html",
+              pin: true,
+              scrub: 0.2,
+              start: "top top",
+              end: "+=10000",
+            },
+          })
+      }, stampRef)
+      return () => ctx.revert()
+    }
   }, [])
 
   return (

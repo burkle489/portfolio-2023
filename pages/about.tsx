@@ -1,9 +1,9 @@
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 import { NextPage } from "next"
-import { FC, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
+import { useDispatch } from "react-redux"
 import Container from "../components/Container"
-import Header from "../components/Header"
 import { MarqueeBanner } from "../components/MarqueeBanner"
 import { MarqueeItem } from "../components/MarqueeBanner/MarqueeItem"
 import { PageHeading } from "../components/PageHeading"
@@ -12,7 +12,6 @@ import Timeline from "../components/Timeline"
 import { ABOUT_TIMELINE } from "../constants"
 import { AppDispatch } from "../store"
 import { setMouseHover } from "../store/mouseHoverSlice"
-import { useDispatch } from "react-redux"
 
 if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
@@ -30,11 +29,12 @@ const About: NextPage = ({}) => {
   }, [])
 
   useEffect(() => {
-    if (!headerRef || !headerRef.current) return
-    const ctx = gsap.context(() => {
-      gsap.fromTo(headerRef.current, { y: -3000 }, { y: 0, duration: 1 })
-    }, headerRef)
-    return () => ctx.revert()
+    if (headerRef.current) {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(headerRef.current, { y: -3000 }, { y: 0, duration: 1 })
+      }, headerRef)
+      return () => ctx.revert()
+    }
   }, [])
 
   return (

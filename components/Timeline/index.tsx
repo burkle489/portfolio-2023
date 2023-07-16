@@ -1,18 +1,11 @@
-import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react"
+import React, { FC, useState } from "react"
 import TimelineItem, { ITimelineItem } from "./TimelineItem"
-import cx from "classnames"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
-import TimelinePoint from "./TimelinePoint"
-
-if (typeof document !== `undefined`) gsap.registerPlugin(ScrollTrigger)
 
 interface ITimelineProps {
   items: ITimelineItem[]
 }
 
 const Timeline: FC<ITimelineProps> = ({ items }) => {
-  const circle = useRef(null)
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (

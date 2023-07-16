@@ -1,22 +1,13 @@
-import { FC, MutableRefObject, useEffect, useRef } from "react"
 import cx from "classnames"
-import gsap from "gsap"
+import { FC, useRef } from "react"
 interface ITitleProps {
   variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   children: React.ReactNode
   tag?: string
   className?: string
-  bgShape?: "blue" | "orange" | "yellow" | "red"
-  timeline?: MutableRefObject<gsap.core.Timeline>
 }
 
-const Title: FC<ITitleProps> = ({
-  variant,
-  className,
-  bgShape = undefined,
-  children,
-  tag,
-}) => {
+const Title: FC<ITitleProps> = ({ variant, className, children, tag }) => {
   const ref = useRef(null)
 
   switch (variant) {

@@ -1,24 +1,15 @@
-import { FC, useEffect, useRef, useState } from "react"
-import Header from "../Header"
-import Title from "../Title/Title"
 import cx from "classnames"
-import Image from "next/image"
-import SocialLink from "../SocialLink"
-import { SOCIALS } from "../../constants"
 import gsap from "gsap"
+import Image from "next/image"
+import { FC, useEffect, useRef, useState } from "react"
 import { ActiveHoverWrapper } from "../MouseWrappers/ActiveHoverWrapper"
-
-interface IProjectCardProps {
-  className: string
-}
+import Title from "../Title/Title"
 
 export const ProjectCard: FC<any> = ({
-  className,
   name,
   logo,
   description,
   screenshot,
-  id,
   tools,
   github,
   hostedLink,
@@ -26,7 +17,6 @@ export const ProjectCard: FC<any> = ({
   screenshotAlt,
   index,
   bgPosition,
-  projectType,
 }) => {
   const bgRef = useRef(null)
   const timeline = useRef(gsap.timeline({ paused: true }))
@@ -34,24 +24,28 @@ export const ProjectCard: FC<any> = ({
   const [mouseEnter, setMouseEnter] = useState<boolean>(false)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      timeline.current
-        .fromTo(
-          bgRef.current,
-          { clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%)" },
-          {
-            clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 0%, 0% 0%)",
+    if (bgRef.current) {
+      const ctx = gsap.context(() => {
+        timeline.current
+          .fromTo(
+            bgRef.current,
+            {
+              clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%)",
+            },
+            {
+              clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 0%, 0% 0%)",
+              ease: "none",
+              duration: 0.25,
+            }
+          )
+          .to(bgRef.current, {
+            clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 100% 0%, 0% 0%)",
             ease: "none",
             duration: 0.25,
-          }
-        )
-        .to(bgRef.current, {
-          clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 100% 0%, 0% 0%)",
-          ease: "none",
-          duration: 0.25,
-        })
-    }, timeline)
-    return () => ctx.revert()
+          })
+      }, timeline)
+      return () => ctx.revert()
+    }
   }, [])
 
   useEffect(() => {
@@ -61,7 +55,7 @@ export const ProjectCard: FC<any> = ({
       timeline.current.reverse()
     }
   }, [mouseEnter])
-  console.log({ index })
+
   return (
     <div
       className={cx(

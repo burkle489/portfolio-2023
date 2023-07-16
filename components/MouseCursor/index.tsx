@@ -1,12 +1,10 @@
-import useMousePosition from "../../hooks/useMousePosition"
-import dynamic from "next/dynamic"
-import { useEffect, useRef } from "react"
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
-import { RootState } from "../../store"
-import Timeline from "../Timeline"
-import gsap from "gsap"
 import cx from "classnames"
+import gsap from "gsap"
+import { useEffect, useRef } from "react"
+import { TypedUseSelectorHook, useSelector } from "react-redux"
 import useIsMouseWindow from "../../hooks/useIsMouseWindow"
+import useMousePosition from "../../hooks/useMousePosition"
+import { RootState } from "../../store"
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const MouseCursor = () => {
@@ -17,22 +15,26 @@ export const MouseCursor = () => {
   const mouse = useMousePosition()
   const outOfWindow = useIsMouseWindow()
   const hoverState = useAppSelector((state) => state.mouseHover.hoverState)
-  console.log({ outOfWindow })
+
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      activeTimeline.current
-        .to(cursor.current, { scale: 0, duration: 0.3 })
-        .to(hoverCursor.current, { scale: 0.8, duration: 0.3 }, "-=0.3")
-    })
-    return () => ctx.revert()
+    if (cursor.current && hoverCursor.current) {
+      const ctx = gsap.context(() => {
+        activeTimeline.current
+          .to(cursor.current, { scale: 0, duration: 0.3 })
+          .to(hoverCursor.current, { scale: 0.8, duration: 0.3 }, "-=0.3")
+      })
+      return () => ctx.revert()
+    }
   }, [])
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      hideTimeline.current
-        .to(cursor.current, { scale: 0, duration: 0.3 })
-        .to(hoverCursor.current, { scale: 0, duration: 0.3 }, "-=0.3")
-    })
-    return () => ctx.revert()
+    if (cursor.current && hoverCursor.current) {
+      const ctx = gsap.context(() => {
+        hideTimeline.current
+          .to(cursor.current, { scale: 0, duration: 0.3 })
+          .to(hoverCursor.current, { scale: 0, duration: 0.3 }, "-=0.3")
+      })
+      return () => ctx.revert()
+    }
   }, [])
 
   useEffect(() => {
