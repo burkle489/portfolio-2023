@@ -71,7 +71,7 @@ const Projects: NextPage = ({}) => {
   }, [])
 
   return (
-    <div className="z-10 relative min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-light-beige">
+    <div className="z-10 relative min-h-[100vh] w-[100vw] flex flex-col justify-center align-center bg-light-beige pb-20">
       <div className="min-h-screen w-full  flex flex-col justify-between md:justify-start">
         <PageHeading
           titleTag="02"

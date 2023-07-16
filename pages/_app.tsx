@@ -7,6 +7,7 @@ import Providers from "../components/Provider"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { MutableRefObject, useRef } from "react"
+const isBrowser = () => typeof window !== "undefined" //The approach recommended by Next.js
 
 config.autoAddCss = false
 // pages/_app.js
@@ -14,7 +15,7 @@ config.autoAddCss = false
 function MyApp({ Component, pageProps }: AppProps) {
   const scrollRef: MutableRefObject<any> = useRef(null)
   const handleScroll = () => {
-    if (scrollRef && scrollRef.current) {
+    if (scrollRef && scrollRef.current && isBrowser()) {
       window.scrollTo({
         top: scrollRef.current.clientHeight,
         behavior: "smooth",
