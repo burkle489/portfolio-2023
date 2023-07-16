@@ -35,7 +35,7 @@ const Header: FC<IHeaderProps> = ({ handleScrollToBottom }) => {
         <div className="col-span-2 flex justify-end items-center">
           <div
             onClick={handleScrollToBottom}
-            className="mr-8 md:mr-0 font-bold uppercase text-dark-blue h-full cursor-pointer md:cursor-none"
+            className="mr-8 md:mr-0 text-lg font-bold uppercase text-dark-blue h-full cursor-pointer md:cursor-none"
           >
             <ActiveHoverWrapper>Contact</ActiveHoverWrapper>
           </div>
