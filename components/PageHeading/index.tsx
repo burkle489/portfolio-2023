@@ -25,12 +25,21 @@ export const PageHeading: FC<IPageHeadingProps> = ({
   const headingRef = useRef(null)
 
   useEffect(() => {
-    if (
-      dividerRef.current &&
-      headingRef.current &&
-      descriptionRef.current &&
-      secondDescriptionRef.current
-    ) {
+    if (secondDescriptionRef.current) {
+      const ctx = gsap.context(() => {
+        gsap.to(secondDescriptionRef.current, {
+          delay: 1,
+          duration: 1.2,
+          marginTop: 40,
+          y: 0,
+          ease: "power4.inOut",
+        })
+      })
+      return () => ctx.revert()
+    }
+  }, [])
+  useEffect(() => {
+    if (dividerRef.current && headingRef.current && descriptionRef.current) {
       const ctx = gsap.context(() => {
         gsap.fromTo(
           dividerRef.current,
@@ -62,7 +71,7 @@ export const PageHeading: FC<IPageHeadingProps> = ({
           y: 0,
           ease: "power4.inOut",
         })
-      }, timeline)
+      })
       return () => ctx.revert()
     }
   }, [])
