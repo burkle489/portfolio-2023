@@ -43,8 +43,8 @@ const About: NextPage = ({}) => {
         <PageHeading
           titleTag="03"
           title="About"
-          description=" Front-End Web Developer with 4+ years commercial experience
-          specialising in React and React-based frameworks."
+          description="I graduated from University and decided to pivot into self teaching software development. Within 3 months I got my first role and haven't looked back!"
+          secondDescription="In my spare time I play golf and built an Amazon business with my brother to over 6-figure revenue in the first 12 months."
           hasButtons
         />
         <Stamp />

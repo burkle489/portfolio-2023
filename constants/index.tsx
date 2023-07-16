@@ -28,7 +28,7 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
     subtitle: "University of Manchester",
     date: "Sep 2016 - July 2019",
     description:
-      "Finished my Integrated Masters a year early to graduate with a Bachelors and pursue Web Development.",
+      "I decided not to pursue an Integrated Masters to graduate early with a Bachelors and pursue a self-taught route in Web Development.",
     tech: undefined,
   },
   {
@@ -36,31 +36,31 @@ export const ABOUT_TIMELINE: ITimelineItem[] = [
     subtitle: "WeTeachCRO",
     date: "Oct 2019 - Jun 2020",
     description:
-      "Role as a Junior Web Developer building A/B tests for clients' existing websites as a means to increase rates of conversion. Worked with clients such as GoDaddy and Nando's.",
-    tech: ["JavaScript", "jQuery"],
+      "First role as a Junior Web Developer building A/B tests for client websites as a means to increase rates of conversion. Worked with clients such as GoDaddy and Nando's.",
+    tech: ["JavaScript", "CSS", "HTML", "jQuery"],
   },
   {
     title: "App Software Engineer",
-    subtitle: "AVAMAE Software Solutions Ltd.",
+    subtitle: "AVAMAE",
     date: "Jun 2020 - Dec 2021",
     description:
-      "This was my first React-based role, initially I worked closely with a mentor and within 9 months was the main Front-End Developer owning my own project. Working closely with Project Managers, and advising a Junior Developer.",
-    tech: ["React", "Redux", "SASS"],
+      "This was my first React-based role, initially I worked closely with a mentor and within 9 months was the lead Front-End Developer owning a project. I Worked closely with the Projects Managers and mentored a Junior Developer.",
+    tech: ["React", "Redux", "SCSS"],
   },
   {
     title: "Web Developer",
     subtitle: "Equator",
     date: "Jan 2022 - Aug 2022",
     description:
-      "Front-End Web Developer role working on a financial services product in a team of 15-20.",
-    tech: ["React", "Redux", "CSS"],
+      "Front-End Web Developer role working on a financial services product in a team of 20. This involved complex funnel and data management.",
+    tech: ["React", "Redux Toolkit", "CSS"],
   },
   {
     title: "Web Developer",
     subtitle: "Fluid",
     date: "Aug 2022 - Present",
     description:
-      "Web Developer Working on Modern Web Apps for Gaming Companies such as Bandai Namco Mobile, Gameloft and Team17.",
+      "I'm currently Working on Modern Web Apps for Gaming Companies such as Bandai Namco Mobile, Gameloft and Team17. The Apps have included Node APIs and CRM Integrations.",
     tech: ["React", "NextJS", "Gatsby", "Netlify", "Vercel", "Tailwind"],
   },
 ]

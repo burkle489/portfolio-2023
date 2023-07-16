@@ -35,9 +35,9 @@ export const PageHeading: FC<IPageHeadingProps> = ({
       // timeline.current
       gsap.fromTo(
         dividerRef.current,
-        { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+        { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" },
         {
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           duration: 2,
           delay: 0.2,
           ease: "power4",
@@ -83,7 +83,10 @@ export const PageHeading: FC<IPageHeadingProps> = ({
                 </Title>
               </div>
             </div>
-            <div className="h-1 w-full bg-dark-blue" ref={dividerRef} />
+            <div
+              className="h-1 w-full bg-dark-blue divider-clip"
+              ref={dividerRef}
+            />
 
             {description && (
               <div className="relative w-4/5 overflow-hidden">

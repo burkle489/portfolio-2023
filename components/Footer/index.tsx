@@ -10,23 +10,24 @@ const Footer: FC = () => {
   const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORM as any)
 
   useEffect(() => {
-    if (!footerRef || !footerRef.current) return
-    const ctx = gsap.context(() => {
-      gsap.timeline().to(footerRef.current, {
-        yPercent: 100,
-        opacity: 1,
-        // duration: 1,
-        scrollTrigger: {
-          trigger: "html",
-          pin: true,
-          scrub: 1.5,
-          start: "bottom bottom",
-          //   end: "+=500",
-          invalidateOnRefresh: true,
-        },
-      })
-    }, footerRef)
-    return () => ctx.revert()
+    if (footerRef && footerRef.current) {
+      const ctx = gsap.context(() => {
+        gsap.timeline().to(footerRef.current, {
+          yPercent: 100,
+          opacity: 1,
+          // duration: 1,
+          scrollTrigger: {
+            trigger: "html",
+            pin: true,
+            scrub: 1.5,
+            start: "bottom bottom",
+            //   end: "+=500",
+            invalidateOnRefresh: true,
+          },
+        })
+      }, footerRef)
+      return () => ctx.revert()
+    }
   }, [])
 
   return (
@@ -146,9 +147,9 @@ const Footer: FC = () => {
                   href="mailto:tayler@tburke.dev"
                   target="_blank"
                   referrerPolicy="no-referrer"
-                  className="underline"
+                  className="underline underline-offset-4 lg:cursor-none hover:scale-[1.15] transition-all duration-300"
                 >
-                  tayler@tburke.dev
+                  <ActiveHoverWrapper>tayler@tburke.dev</ActiveHoverWrapper>
                 </a>
               </div>
             </div>

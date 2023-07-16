@@ -137,7 +137,7 @@ const Home: NextPage = ({}) => {
         <PageHeading
           titleTag="01"
           title="Tayler Burke"
-          description="Front-End Web Developer with 4+ years industry experience, specialising in React and React-based Frameworks"
+          description="Front-End Developer with 4+ years of industry experience, specialising in React and React-based Frameworks"
         />
         <Stamp />
       </div>
