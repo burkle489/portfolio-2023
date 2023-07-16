@@ -46,7 +46,6 @@ export const MouseCursor = () => {
     <div
       className={cx(
         "hidden lg:flex fixed w-14 h-14 z-[9999] justify-center mix-blend-exclusion items-center pointer-events-none"
-        // { "mix-blend-exclusion": hoverState !== "hide" }
       )}
       style={{
         top: `${(mouse.y as unknown as number) - 28}px`,
