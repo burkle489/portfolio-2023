@@ -37,63 +37,63 @@ export const Featured: FC<{
     carouselTimeline.current
 
   useEffect(() => {
-    if (ifAllRefs) {
-      const ctx = gsap.context(() => {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: carouselInner.current,
-              start: "top bottom",
-            },
-            paused: true,
-          })
-          .addLabel("first", 0)
-          .addLabel("second", 1)
-          .fromTo(
-            innerFeatured.current,
-            { yPercent: 200 },
-            {
-              yPercent: 0,
-              duration: 1.5,
-              ease: "power3.inOut",
-            },
-            "first"
-          )
-          .fromTo(
-            topBorder.current,
-            { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-            {
-              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-              duration: 2,
-              ease: "power4",
-            },
-            "=-0.5"
-          )
-          .fromTo(
-            bottomBorder.current,
-            { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-            {
-              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-              duration: 2,
-              ease: "power4",
-            },
-            "=-1.9"
-          )
-          .fromTo(
-            secondBottomBorder.current,
-            { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-            {
-              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-              duration: 2,
-              ease: "power4",
-            },
-            "=-1.8"
-          )
-          .fromTo(wrapperRef.current, { opacity: 0 }, { opacity: 1 }, "=-1.8")
-          .fromTo(seeMoreBtn.current, { y: -100 }, { y: 0 }, "-=1.5")
-      }, carouselTimeline)
-      return () => ctx.revert()
-    }
+    // if (ifAllRefs) {
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: carouselInner.current,
+            start: "top bottom",
+          },
+          paused: true,
+        })
+        .addLabel("first", 0)
+        .addLabel("second", 1)
+        .fromTo(
+          innerFeatured.current,
+          { yPercent: 200 },
+          {
+            yPercent: 0,
+            duration: 1.5,
+            ease: "power3.inOut",
+          },
+          "first"
+        )
+        .fromTo(
+          topBorder.current,
+          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            duration: 2,
+            ease: "power4",
+          },
+          "=-0.5"
+        )
+        .fromTo(
+          bottomBorder.current,
+          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            duration: 2,
+            ease: "power4",
+          },
+          "=-1.9"
+        )
+        .fromTo(
+          secondBottomBorder.current,
+          { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            duration: 2,
+            ease: "power4",
+          },
+          "=-1.8"
+        )
+        .fromTo(wrapperRef.current, { opacity: 0 }, { opacity: 1 }, "=-1.8")
+        .fromTo(seeMoreBtn.current, { y: -100 }, { y: 0 }, "-=1.5")
+    }, carouselTimeline)
+    return () => ctx.revert()
+    // }
   }, [])
 
   //hover animations
