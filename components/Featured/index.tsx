@@ -111,73 +111,72 @@ export const Featured: FC<{
   }, [])
 
   return (
-    <Container innerRef={carouselInner} className="!px-0 !py-0 overflow-hidden">
-      <div ref={topBorder} className=" bg-dark-blue h-1 w-full mb-6" />
-      <div
-        className="flex flex-col sm:flex-row px-8 lg:px-12 justify-between"
-        ref={wrapperRef}
-      >
-        <Title variant="h6" className="uppercase font-bold !mb-0 !text-xl">
-          {title}
-        </Title>
-
-        <Title variant="h6" className="uppercase font-bold !mb-0 !text-xl">
-          {titleTag}
-        </Title>
-      </div>
-      <div ref={bottomBorder} className=" bg-dark-blue h-1 w-full mt-6" />
-      {/* <HideWrapper> */}
-      <div className="overflow-hidden w-full h-full">
+    <Container className="!px-0 !py-0 overflow-hidden">
+      <div ref={carouselInner}>
+        <div ref={topBorder} className=" bg-dark-blue h-1 w-full mb-6" />
         <div
-          onMouseEnter={() => hoverTimeline.current.play()}
-          onMouseLeave={() => hoverTimeline.current.reverse()}
-          ref={innerFeatured}
-          className="px-8 lg:px-12 py-6 lg:py-8 flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-20 overflow-hidden"
+          className="flex flex-col sm:flex-row px-8 lg:px-12 justify-between"
+          ref={wrapperRef}
         >
-          <Title variant="h2" className="w-full lg:w-1/2 !mb-0 !pb-0">
-            {itemName}
+          <Title variant="h6" className="uppercase font-bold !mb-0 !text-xl">
+            {title}
           </Title>
 
-          <div className="w-full lg:w-1/2 h-full">
-            <Title variant="h3" className="text-right !mb-4 pb-0">
-              {itemNameSubTitle}
+          <Title variant="h6" className="uppercase font-bold !mb-0 !text-xl">
+            {titleTag}
+          </Title>
+        </div>
+        <div ref={bottomBorder} className=" bg-dark-blue h-1 w-full mt-6" />
+        <div className="overflow-hidden w-full h-full">
+          <div
+            onMouseEnter={() => hoverTimeline.current.play()}
+            onMouseLeave={() => hoverTimeline.current.reverse()}
+            ref={innerFeatured}
+            className="px-8 lg:px-12 py-6 lg:py-8 flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-20 overflow-hidden"
+          >
+            <Title variant="h2" className="w-full lg:w-1/2 !mb-0 !pb-0">
+              {itemName}
             </Title>
-            <div className="flex gap-4 mb-2 justify-end flex-wrap">
-              {tools?.map((tool: string, index: number) => (
-                <p
-                  className="uppercase font-bold mb-0 text-main-blue"
-                  key={`tool-${index}`}
-                >
-                  {tool}
-                </p>
-              ))}
+
+            <div className="w-full lg:w-1/2 h-full">
+              <Title variant="h3" className="text-right !mb-4 pb-0">
+                {itemNameSubTitle}
+              </Title>
+              <div className="flex gap-4 mb-2 justify-end flex-wrap">
+                {tools?.map((tool: string, index: number) => (
+                  <p
+                    className="uppercase font-bold mb-0 text-main-blue"
+                    key={`tool-${index}`}
+                  >
+                    {tool}
+                  </p>
+                ))}
+              </div>
+              <Title variant="h6" className="text-md text-right">
+                {description}
+              </Title>
             </div>
-            <Title variant="h6" className="text-md text-right">
-              {description}
-            </Title>
           </div>
         </div>
-      </div>
 
-      {/* </HideWrapper> */}
-
-      <div ref={secondBottomBorder} className=" bg-dark-blue h-1 w-full" />
-      <div className="flex justify-end w-full overflow-hidden">
-        <ActiveHoverWrapper>
-          <div
-            ref={seeMoreBtn}
-            className="w-[200px] group py-4 flex justify-center items-center text-right relative hover:bg-dark-blue duration-500 transition-all hover:text-light-beige"
-          >
-            <Link
-              href="/projects"
-              className="uppercase w-full h-full text-center font-bold lg:cursor-none"
+        <div ref={secondBottomBorder} className=" bg-dark-blue h-1 w-full" />
+        <div className="flex justify-end w-full overflow-hidden">
+          <ActiveHoverWrapper>
+            <div
+              ref={seeMoreBtn}
+              className="w-[200px] group py-4 flex justify-center items-center text-right relative hover:bg-dark-blue duration-500 transition-all hover:text-light-beige"
             >
-              See more
-            </Link>
-            <div className=" bg-dark-blue h-1 w-full absolute left-0 bottom-0 duration-500 transition-all" />
-            <div className=" bg-dark-blue h-full w-1 absolute left-0 top-0 duration-500 transition-all" />
-          </div>
-        </ActiveHoverWrapper>
+              <Link
+                href="/projects"
+                className="uppercase w-full h-full text-center font-bold lg:cursor-none"
+              >
+                See more
+              </Link>
+              <div className=" bg-dark-blue h-1 w-full absolute left-0 bottom-0 duration-500 transition-all" />
+              <div className=" bg-dark-blue h-full w-1 absolute left-0 top-0 duration-500 transition-all" />
+            </div>
+          </ActiveHoverWrapper>
+        </div>
       </div>
     </Container>
   )
