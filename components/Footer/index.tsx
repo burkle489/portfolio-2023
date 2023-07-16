@@ -32,7 +32,7 @@ const Footer: FC = () => {
   return (
     <div
       ref={footerRef}
-      className="h-[602px] md:h-[500px] z-0 fixed bottom-0 -translate-y-[602px] md:-translate-y-[500px] opacity-0  py-12 px-6 md:px-12 border-dark-blue border-t-2 w-full bg-main-blue "
+      className="h-[572px] md:h-[400px] z-0 fixed bottom-0 -translate-y-[572px] md:-translate-y-[400px] opacity-0 pb-12 px-6 md:px-12 border-dark-blue border-t-2 w-full bg-main-blue "
     >
       <div className="relative w-full h-full">
         <div className="absolute w-full h-full bottom-0 flex items-center gap-12 md:gap-32 flex-col-reverse md:flex-row ">
@@ -84,7 +84,7 @@ const Footer: FC = () => {
                   <ActiveHoverWrapper>
                     <div className="relative flex flex-col mb-4">
                       <ReactTextareaAutosize
-                        maxRows={8}
+                        maxRows={7}
                         rows={1}
                         name="message"
                         onChange={handleChange}
@@ -120,10 +120,10 @@ const Footer: FC = () => {
 
           <div className="md:flex-1 h-full text-light-beige items-center justify-center">
             <div className="w-full h-full flex justify-center flex-col items-center gap-8 md:gap-0">
-              <div className="md:mt-16 h-1/2 w-full text-5xl text-light-beige flex items-center justify-center">
+              <div className="md:mt-16 h-1/3 w-full text-5xl text-light-beige flex items-center justify-center">
                 tb.
               </div>
-              <div className="h-1/2 w-full flex gap-2 flex-col items-center md:items-end justify-end">
+              <div className="h-1/3 w-full flex gap-2 flex-col items-center md:items-end justify-end">
                 <div className="flex gap-4">
                   <a
                     href={"https://github.com/burkle489"}
